@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath,amssymb}
+\usepackage{hyperref}
 
 \newcommand{\Z}{\mathbb{Z}}
 
@@ -97,9 +98,33 @@ Thus, for charge-free space the value of the electrostatic potential at any poin
 \begin{equation}
     \int_V \rho \Phi' d^3x + \int_S \sigma \Phi' da = \int_V \rho' \Phi d^3x + \int_S \sigma' \Phi da~.
 \end{equation}
-Arranging it
+Rearranging it,
 \begin{equation}
-    \int_V(\rho \Phi' - \rho' \Phi) d^3x = \int_S(\sigma' \Phi - \sigma \Phi') da
+    \int_V(\rho \Phi' - \rho' \Phi) \, d^3x = \int_S(\sigma' \Phi - \sigma \Phi') \, da~.
+\end{equation}
+Green's theorem states that
+\begin{equation}
+    \int_V ( \phi \nabla^2 \psi - \psi \nabla^2 \phi )\, d^3x = \int_S \left(\phi \frac{\partial \psi}{\partial n} - \psi \frac{\partial \phi}{\partial n} \right) da~.
+\end{equation}
+Now substituting $\phi = \Phi$ and $\psi = \Phi'$, we have
+\begin{equation}\label{equation1}
+    \int_V (\Phi \nabla^2 \Phi' - \Phi' \nabla^2 \Phi)\, d^3x = \int_S \left( \Phi \frac{\partial \Phi'}{\partial n} - \Phi' \frac{\partial \Phi}{\partial n} \right) da~.
+\end{equation}
+The Poisson equation gives
+\begin{equation}\label{condition1}
+    \nabla^2 \Phi = - \rho / \epsilon_0~, \quad \nabla^2 \Phi' = - \rho' / \epsilon_0~.
+\end{equation}
+Also, $E_\perp = - \partial \Phi/ \partial n$, where $E_\perp$ is the electric field on the surface of the conductor in the normal direction. By Gauss' law, we would have
+\begin{equation}
+    \frac{\partial \Phi}{\partial n} = - E_\perp = - \frac{\sigma}{\epsilon_0}~.
+\end{equation}
+However, in Green's theorem, since the conducting surface bounds the volume $V$, the normal unit vector actually points into the surface conductor. In Gauss' law, the normal unit vector points outward the surface conductor. So we should flip the sign in the above equation and
+\begin{equation}\label{condition2}
+    \frac{\partial \Phi}{\partial n} = \frac{\sigma}{\epsilon_0}~,\quad \frac{\partial \Phi'}{\partial n} = \frac{\sigma'}{\epsilon_0}~.
+\end{equation}
+Plug \eqref{condition1} and \eqref{condition2} back into \eqref{equation1}, we obtain
+\begin{equation}
+    \int_V (\rho \Phi' - \rho' \Phi)\, d^3 x = \int_S ( \sigma' \Phi - \sigma \Phi' )\, da~.
 \end{equation}
 
 \end{document}
