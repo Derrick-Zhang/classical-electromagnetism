@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 1
+\end{center}
+\textbf{1.1} (a) Suppose there's a charge inside the conductor. Considering a closed surface enclosing the charge, then by Gauss's theorem, there would be flux and hence electric field. And the charge would move, hence a contradiction.
+
+\bigskip
+\noindent(b) For charges outside the hollow conductor, we consider any arbitrary closed surface inside the conductor. Then by Gauss's theorem, since there are no charges inside the surface and we can choose arbitrary surface inside, the electric field inside is zero. Hence, hollow conductor shield its interior from fields due to charges outside.
+
+However, if there are charges inside the hollow conductor, considering a surface outside enclosing the conductor, then by Gauss's law, there are net flux and the hollow conductor does not shield its exterior from the fields due to charges placed inside it.
+
+\bigskip
+\noindent(c) First consider a loop integral,
+$$
+\int \vec{E}\cdot d\vec{l} = 0~.
+$$
+From this we can get the tangential component is continuous across the surface. Therefore the electric field has to be in the normal direction. Now use Gauss's theorem to get the magnitude,
+$$
+E A = \sigma A /\epsilon_0 \quad \Rightarrow \quad E = \sigma/\epsilon_0~.
+$$
+
+\newpage
+\noindent\textbf{1.5} The potential is given by
+$$
+\Phi = \frac{q}{4\pi \epsilon_0} \frac{e^{-\alpha r}}{r} \left( 1 + \frac{\alpha r}{2}\right)~.
+$$
+The Poisson equation is $\nabla^2 \Phi = - \rho / \epsilon_0$. Since the potential only depends on $r$, we can use the spherical coordinates. Therefore, the charge distribution
+\begin{align}
+    \rho &= -\epsilon_0 \nabla^2 \Phi = -\epsilon_0 \frac{1}{r^2} \frac{\partial }{\partial r } \left(r^2 \frac{\partial \Phi }{\partial r } \right) \cr
+    &= -\epsilon_0  \frac{q}{4\pi \epsilon_0}\frac{1}{r^2} \frac{\partial }{\partial r}\left[ r^2 \frac{\partial }{\partial r}\left(\frac{e^{-\alpha r}}{r}\right)  + r^2 \frac{\partial }{\partial r}\left(\frac{\alpha e^{-\alpha r}}{2}\right)\right]\cr
+    &=-\frac{q}{4\pi} \frac{1}{r^2} \frac{\partial}{\partial r} \left[r^2\frac{\partial }{\partial r}\left(e^{-\alpha r}\right) \frac1r + r^2 \frac{\partial }{\partial r} \left(\frac{1}{r}\right) e^{-\alpha r} - r^2 \frac{\alpha^2}{2}e^{-\alpha r} \right]\cr
+    &=-\frac{q}{4\pi} \frac{1}{r^2} \frac{\partial}{\partial r} \left(-\alpha r e^{-\alpha r} -\frac12 \alpha^2 r^2 e^{-\alpha r}\right) - \frac{q}{4\pi} \frac{1}{r^2} \frac{\partial}{\partial r}\left(e^{-\alpha r} r^2 \frac{\partial }{\partial r}\frac{1}{r}\right)\cr
+    &=-\frac{q}{8 \pi} \alpha^3 e^{-\alpha r} + \frac{q}{4\pi r^2} \alpha e^{-\alpha r} - \frac{q}{4\pi r^2} \alpha e^{-\alpha r} - \frac{q}{4\pi} e^{-\alpha r} \frac{1}{r^2}  \frac{\partial }{\partial r} \left(r^2 \frac{\partial }{\partial r} \frac 1r\right)\cr
+    &= - \frac{q}{8 \pi} \alpha^3 e^{-\alpha r} + q e^{-\alpha r} \delta(r) = - \frac{q}{8 \pi} \alpha^3 e^{-\alpha r} + q \delta(r)~,
+\end{align}
+where we have used the fact that
+\begin{equation}
+    \nabla^2\left(\frac{1}{r}\right) = \frac{1}{r^2} \frac{\partial}{\partial r}\left(r^2 \frac{\partial}{\partial r} \frac 1r \right) = - 4\pi \delta(r)~.
+\end{equation}
+\iffalse
+Alternatively, we can consider the region $r > 0$ and $r = 0$ separately. When $r > 0$, we have
+\begin{align}
+    \rho &= - \epsilon_0 \nabla^2 \Phi = -\epsilon_0 \frac{1}{r^2} \frac{\partial }{\partial r } \left(r^2 \frac{\partial \Phi }{\partial r } \right) \cr
+    &= - \epsilon_0 \frac{q}{4\pi \epsilon_0}\frac{1}{r^2}\frac{\partial}{\partial r} \left[r^2 \frac{\partial }{\partial r} \left( \frac{e^{-\alpha r}}{r} + \frac12 \alpha e^{-\alpha r} \right) \right] \cr
+    &= \frac{q}{4 \pi} \frac{1}{r^2} \frac{\partial }{\partial r} \left[ e^{-\alpha r} \left( 1 + \alpha r + \frac12 \alpha^2 r^2 \right) \right] \cr
+    &= \frac{q}{4\pi} \frac{1}{r^2} \left( - \frac12 e^{-\alpha r} \alpha^3 r^2 \right) = - \frac{q}{8 \pi} \alpha^3 e^{-\alpha r}~.
+\end{align}
+When $r = 0$, we can simplify the potential as
+\begin{equation}
+    \Phi = \frac{q}{4\pi \epsilon_0}\frac{e^{-\alpha r}}{r} \left( 1+ \frac{\alpha r}{2} \right) = \frac{q}{4\pi \epsilon_0 r} \left(1 - \alpha r + \frac12 \alpha^2 r^2 \right) + \frac{\alpha q}{8 \pi \epsilon_0} e^{-\alpha r}~.
+\end{equation}
+We can recognize that the first term is a potential of point particle at $r = 0$ with charge $q$~. And
+\begin{equation}
+    \nabla^2 e^{-\alpha r} = \frac{1}{r^2} \frac{\partial}{\partial r} \left(r^2 \frac{\partial e^{-\alpha r}}{\partial r}\right)
+\end{equation}
+\fi
+Consider integration of the first part of density over all space
+\begin{equation}
+    \int -\frac{q}{8 \pi} \alpha^3 e^{-\alpha r} r^2 dr d\Omega = -q~.
+\end{equation}
+The physical interpretation is that the hydrogen consists of one point charge with positive charge $q$ at the center and the electron cloud decay exponentially and spherically. The total amount of negative charge is $-q$.
+
+\newpage
+\noindent{\bf 1.10} Using Green's theorem, we have
+\begin{align}
+    \Phi(\vec x) = & ~ \frac{1}{4 \pi \epsilon_0 } \int_V \rho(\vec x') G(\vec x, \vec x') d^3 x' \cr
+    &+ \frac{1}{4\pi} \oint_S \left[ G(\vec x, \vec x') \frac{\partial \Phi}{\partial n'} - \Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'} \right] da'~.
+\end{align}
+Since the space is charge-free, $\rho(\vec x') = 0$ and the first term vanishes. Also, we use Dirichlet boundary condition, $G_D(\vec x, \vec x') = 0$ for $\vec x'$ on $S$. Therefore, we obtain
+\begin{align}
+    \Phi(\vec x) = - \frac{1}{4\pi} \oint_S\Phi(\vec x')\frac{\partial G_D(\vec x, \vec x')}{\partial n'} da'~.
+\end{align}
+Also
+\begin{equation}
+    G_D(\vec x, \vec x') = \frac{1}{|\vec x - \vec x'|} - \frac{1}{R} = \frac{1}{r} - \frac{1}{R}~,
+\end{equation}
+where $R$ is the radius of the sphere and $r$ is the distance between the center of the sphere $\vec x$ and an arbitrary position $\vec x'$. The surface we consider is the sphere, thus
+\begin{equation}
+    \frac{\partial G_D (\vec x, \vec x') }{\partial n' } = \frac{\partial G_D(\vec x, \vec x')}{\partial r} = -\frac{1}{r^2}~.
+\end{equation}
+And for points constrained on the sphere surface $-\frac{1}{r^2} = - \frac{1}{R^2}$. Therefore,
+\begin{equation}
+    \Phi(\vec x) = -\frac{1}{4 \pi} \oint_S \Phi(\vec x')\left( - \frac{1}{R^2} \right) da' = \frac{1}{4\pi R^2} \oint_S \Phi(\vec x') \, da'~,
+\end{equation}
+Thus, for charge-free space the value of the electrostatic potential at any point is equal to the average of the potential over the surface of \textit{any} sphere centered on that point.
+
+\newpage
+\noindent {\bf 1.12} We need to show that
+\begin{equation}
+    \int_V \rho \Phi' d^3x + \int_S \sigma \Phi' da = \int_V \rho' \Phi d^3x + \int_S \sigma' \Phi da~.
+\end{equation}
+Arranging it
+\begin{equation}
+    \int_V(\rho \Phi' - \rho' \Phi) d^3x = \int_S(\sigma' \Phi - \sigma \Phi') da
+\end{equation}
+
+\end{document}
