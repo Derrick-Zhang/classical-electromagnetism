@@ -1,0 +1,6 @@
+.DS_Store
+
+# tex related
+*.aux
+*.log
+*.synctex.gz
