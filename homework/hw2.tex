@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 2
+\end{center}
+\textbf{1.14} The Green's theorem is,
+\begin{equation}
+    \int_V (\phi \nabla^2 \psi - \psi \nabla^2 \phi) d^3 x = \oint_S \left(\phi \frac{\partial \psi}{\partial n} - \psi \frac{\partial \phi}{\partial n} \right) da~.
+\end{equation}
+Apply this with integration variable $\vec y$ and $\phi = G(\vec x, \vec y)$, $\psi = G(\vec x', \vec y)$ with $\nabla^2_y G(\vec z, \vec y) = -4\pi \delta(\vec y - \vec z)$. Suppose $\vec x$ and $\vec x'$ are inside the volume $V$,then we have
+\begin{align}
+    {\rm L.H.S.} &= \int_V \Big(G(\vec x, \vec y) \nabla^2_y G(\vec x', \vec y) - G(\vec x', \vec y) \nabla^2_y G(\vec x, \vec y)\Big) d^3 y \cr
+    &= -4\pi \int_V \Big(G(\vec x, \vec y) \delta(\vec y - \vec x') - G(\vec x', \vec y) \delta(\vec y - \vec x)\Big) d^3 y \cr
+    &= -4\pi [G(\vec x, \vec x') - G(\vec x', \vec x)]~.
+\end{align}
+Therefore,
+\begin{equation}
+    G(\vec x, \vec x') - G(\vec x', \vec x) = \frac{1}{4\pi} \oint_S \left(G(\vec x', \vec y) \frac{\partial G(\vec x, \vec y)}{\partial n} - G(\vec x, \vec y) \frac{\partial G(\vec x', \vec y)}{\partial n}\right)da_y~.
+\end{equation}
+
+\newpage
+\noindent(a) For Dirichlet boundary conditions, we have
+\begin{equation}
+    G_D(\vec x, \vec y) = 0~, \quad {\rm for}~\vec y~{\rm on}~S~.
+\end{equation}
+The surface integral vanishes and we have
+\begin{equation}
+    G_D(\vec x, \vec x') - G_D(\vec x', \vec x) = 0~.
+\end{equation}
+Therefore, $G_D(\vec x, \vec x') = G_D(\vec x', \vec x)$ and $G_D(\vec x, \vec x')$ is symmetric in $\vec x$ and $\vec x'$.
+
+\newpage
+\noindent(b) For Neumann boundary conditions, we have
+\begin{equation}
+    \frac{\partial G_N}{\partial n'} (\vec x, \vec y) = - \frac{4\pi}{S},\quad {\rm for}~\vec y~{\rm on}~S~.
+\end{equation}
+Then,
+\begin{equation}
+    G_N(\vec x, \vec x') - G_N(\vec x', \vec x) = \frac{1}{S} \oint_S \Big( G_N(\vec x, \vec y)  - G_N(\vec x', \vec y)  \Big)da_y~.
+\end{equation}
+and
+\begin{equation}
+    G_N(\vec x, \vec x') - \frac{1}{S} \oint_S G_N(\vec x, \vec y) da_y = G_N(\vec x', \vec x) - \frac{1}{S} \oint_S  G_N(\vec x', \vec y) da_y~.
+\end{equation}
+Therefore, $G_N(\vec x, \vec x')$ is not symmetric in general, but $G_N(\vec x, \vec x') - F(\vec x)$ is symmetric in $\vec x$ and $\vec x'$, where
+\begin{equation}
+    F(\vec x) = \frac{1}{S} \oint_S G_N(\vec x, \vec y) da_y~.
+\end{equation}
+
+\newpage
+\noindent(c)
+The Neumann boundary solution is
+\begin{align}
+    \Phi(\vec x) = &~ \frac{1}{4\pi \epsilon_0} \int_V \rho(\vec x') G(\vec x, \vec x') d^3x' + \frac{1}{4\pi} \int_S G(\vec x, \vec x') \frac{\partial \Phi}{\partial n'} da' \cr
+    &+\frac{1}{S} \int_{S} \Phi(\vec x') d^3 x'~.
+\end{align}
+For a transformation, $G_N(\vec x, \vec x') \to G_N(\vec x, \vec x') + F(\vec x)$,
+\begin{align}
+    \Phi'(\vec x) - \Phi(\vec x) &= \frac{1}{4\pi \epsilon_0}  F(\vec x)\int_V \rho(\vec x') d^3 x' + \frac{1}{4\pi} F(\vec x) \int_S \frac{\partial \Phi}{\partial n'} da' \cr
+    &= \frac{F(\vec x)}{4\pi} \left( \int_V \frac{\rho(\vec x')}{\epsilon_0}  d^3 x' + \int_S \nabla \Phi \cdot \hat{n} da;\right)
+\end{align}
+Since $\vec E = - \nabla \Phi$ and $\int_S \vec E \cdot \hat n da = \int_V \frac{\rho(\vec x')}{\epsilon_0} d^3 x'$, we have
+\begin{equation}
+    \Phi'(\vec x) = \Phi(\vec x)~.
+\end{equation}
+Therefore, the addition of $F(\vec x)$ to the Green function does not affect the potential $\Phi(\vec x)$.
+
+\newpage
+\noindent{\bf 2.2} (a) Suppose the original charge is at $\vec y$. Substitute the conductor with an image charge at $\vec y'$ with charge $q'$. The potential can be written as
+\begin{equation}
+\Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \left(\frac{q}{|\vec x - \vec y|} + \frac{q'}{|\vec x - \vec y'|} \right)~.
+\end{equation}
+The potential has to vanish on conductor, so $\Phi(|\vec x| = a) = 0$
+\begin{equation}
+    \Phi(|\vec x| = a) = \frac{1}{4\pi \epsilon_0} \left( \frac{q}{\sqrt{a^2 + y^2 - 2ay\cos\theta}} + \frac{q'}{ \sqrt{a^2 + y'^2 -2 ay' \cos \theta}}\right)~.
+\end{equation}
+Therefore, $q$ and $q'$ should have different signs and
+\begin{equation}
+    \frac{q^2}{q'^2} = \frac{a^2 + y^2 - 2ay\cos\theta}{a^2 + y'^2 -2 ay' \cos\theta}~,
+\end{equation}
+which leads to
+\begin{equation}
+    y' = \frac{a^2}{y}, \quad q' = - \frac{a}{y}q
+\end{equation}
+By symmetry, $\vec y'$ has to be parallel with $\vec y$, therefore, for $|\vec x| < a$,
+\begin{equation}
+    \Phi(\vec x') = \frac{q}{4\pi \epsilon_0} \left( \frac{1}{|\vec x - \vec y|} - \frac{a/y}{|\vec x - (a^2/y^2) \vec y|} \right)~.
+\end{equation}
+
+\newpage
+\noindent(b) The surface charge density can be evaluated as
+\begin{align}
+    \sigma &= - \epsilon_0 \frac{\partial \Phi}{\partial n} \Bigg|_{|\vec x| = a}  = \epsilon_0 \frac{\partial \Phi}{\partial x} \Bigg|_{|\vec x| = a}\cr
+    &= \frac{q}{4\pi} \frac{\partial}{\partial x} \left( \frac{1}{\sqrt{x^2 + y^2 - 2xy\cos \theta}} - \frac{a/y}{\sqrt{x^2 + a^4/y^2 - 2 x a^2 \cos \theta/y} } \right)\Bigg|_{|\vec x| = a}\cr
+    &= \frac{q}{4\pi}\left( \frac{-a + y \cos\theta}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} - \frac{y\cos \theta -y^2/a}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} \right) \cr
+    &= \frac{q}{4\pi} \frac{y^2/a-a}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} = \frac{q}{4\pi ay} \frac{1-a^2/y^2}{(1+ a^2/y^2 - 2(a/y)\cos \theta)^{3/2}}~.
+\end{align}
+
+
+\newpage
+\noindent(c) The force is then
+\begin{equation}
+    \vec F = \frac{1}{4\pi \epsilon_0} q q' \frac{\vec y - \vec y'}{|\vec y - \vec y'|^3} = \frac{q^2 a}{4\pi \epsilon_0 y^3} \frac{\hat y}{\left(1- \frac{a^2}{y^2}\right)^2}~.
+\end{equation}
+
+\end{document}
