@@ -9,106 +9,87 @@
 
 \begin{center}
 {\bf Phys 5405}\\
-HW 2
+HW 3
 \end{center}
-\textbf{1.14} The Green's theorem is,
-\begin{equation}
-    \int_V (\phi \nabla^2 \psi - \psi \nabla^2 \phi) d^3 x = \oint_S \left(\phi \frac{\partial \psi}{\partial n} - \psi \frac{\partial \phi}{\partial n} \right) da~.
-\end{equation}
-Apply this with integration variable $\vec y$ and $\phi = G(\vec x, \vec y)$, $\psi = G(\vec x', \vec y)$ with $\nabla^2_y G(\vec z, \vec y) = -4\pi \delta(\vec y - \vec z)$. Suppose $\vec x$ and $\vec x'$ are inside the volume $V$,then we have
+\textbf{2.3} (a) Using method of image, substitute the intersecting planes with a straight-line charge with constant linear charge density $\lambda'$, located perpendicular to the $x-y$ plane at point $(a,b)$. Since the system is translation invariant along $z$ axis. We write the potential as a function of $x$ and $y$. By symmetry, we can simply write down the answer,
 \begin{align}
-    {\rm L.H.S.} &= \int_V \Big(G(\vec x, \vec y) \nabla^2_y G(\vec x', \vec y) - G(\vec x', \vec y) \nabla^2_y G(\vec x, \vec y)\Big) d^3 y \cr
-    &= -4\pi \int_V \Big(G(\vec x, \vec y) \delta(\vec y - \vec x') - G(\vec x', \vec y) \delta(\vec y - \vec x)\Big) d^3 y \cr
-    &= -4\pi [G(\vec x, \vec x') - G(\vec x', \vec x)]~.
+    \Phi(x,y) = &~ \frac{\lambda}{4 \pi \epsilon_0} \ln\frac{R^2}{(x-x_0)^2 + (y - y_0)^2}
+    - \frac{\lambda}{4 \pi \epsilon_0} \ln\frac{R^2}{(x+x_0)^2 + (y - y_0)^2}\cr
+    &- \frac{\lambda}{4 \pi \epsilon_0} \ln\frac{R^2}{(x-x_0)^2 + (y + y_0)^2} + \frac{\lambda}{4 \pi \epsilon_0} \ln\frac{R^2}{(x+x_0)^2 + (y + y_0)^2}~.\nonumber
 \end{align}
-Therefore,
-\begin{equation}
-    G(\vec x, \vec x') - G(\vec x', \vec x) = \frac{1}{4\pi} \oint_S \left(G(\vec x', \vec y) \frac{\partial G(\vec x, \vec y)}{\partial n} - G(\vec x, \vec y) \frac{\partial G(\vec x', \vec y)}{\partial n}\right)da_y~.
-\end{equation}
-
-\newpage
-\noindent(a) For Dirichlet boundary conditions, we have
-\begin{equation}
-    G_D(\vec x, \vec y) = 0~, \quad {\rm for}~\vec y~{\rm on}~S~.
-\end{equation}
-The surface integral vanishes and we have
-\begin{equation}
-    G_D(\vec x, \vec x') - G_D(\vec x', \vec x) = 0~.
-\end{equation}
-Therefore, $G_D(\vec x, \vec x') = G_D(\vec x', \vec x)$ and $G_D(\vec x, \vec x')$ is symmetric in $\vec x$ and $\vec x'$.
-
-\newpage
-\noindent(b) For Neumann boundary conditions, we have
-\begin{equation}
-    \frac{\partial G_N}{\partial n'} (\vec x, \vec y) = - \frac{4\pi}{S},\quad {\rm for}~\vec y~{\rm on}~S~.
-\end{equation}
-Then,
-\begin{equation}
-    G_N(\vec x, \vec x') - G_N(\vec x', \vec x) = \frac{1}{S} \oint_S \Big( G_N(\vec x, \vec y)  - G_N(\vec x', \vec y)  \Big)da_y~.
-\end{equation}
-and
-\begin{equation}
-    G_N(\vec x, \vec x') - \frac{1}{S} \oint_S G_N(\vec x, \vec y) da_y = G_N(\vec x', \vec x) - \frac{1}{S} \oint_S  G_N(\vec x', \vec y) da_y~.
-\end{equation}
-Therefore, $G_N(\vec x, \vec x')$ is not symmetric in general, but $G_N(\vec x, \vec x') - F(\vec x)$ is symmetric in $\vec x$ and $\vec x'$, where
-\begin{equation}
-    F(\vec x) = \frac{1}{S} \oint_S G_N(\vec x, \vec y) da_y~.
-\end{equation}
-
-\newpage
-\noindent(c)
-The Neumann boundary solution is
+Cancelling the constant terms, we obtain
 \begin{align}
-    \Phi(\vec x) = &~ \frac{1}{4\pi \epsilon_0} \int_V \rho(\vec x') G(\vec x, \vec x') d^3x' + \frac{1}{4\pi} \int_S G(\vec x, \vec x') \frac{\partial \Phi}{\partial n'} da' \cr
-    &+\frac{1}{S} \int_{S} \Phi(\vec x') d^3 x'~.
+    \Phi(x,y) = &~ -\frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x-x_0)^2 + (y - y_0)^2}\right)
+    + \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x+x_0)^2 + (y - y_0)^2}\right)\cr
+    &+ \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x-x_0)^2 + (y + y_0)^2}\right) - \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x+x_0)^2 + (y + y_0)^2}\right)~.\nonumber
 \end{align}
-For a transformation, $G_N(\vec x, \vec x') \to G_N(\vec x, \vec x') + F(\vec x)$,
-\begin{align}
-    \Phi'(\vec x) - \Phi(\vec x) &= \frac{1}{4\pi \epsilon_0}  F(\vec x)\int_V \rho(\vec x') d^3 x' + \frac{1}{4\pi} F(\vec x) \int_S \frac{\partial \Phi}{\partial n'} da' \cr
-    &= \frac{F(\vec x)}{4\pi} \left( \int_V \frac{\rho(\vec x')}{\epsilon_0}  d^3 x' + \int_S \nabla \Phi \cdot \hat{n} da;\right)
+It is easily verified that the potential vanishes on the boundary. Now consider the tangential electric field. At $x = 0$, the tangential electric field should be along $y$ axis.
+\begin{align} \label{eqn:partial-y}
+    E_y(x,y) =&~ - \partial_y \Phi(x,y) \cr
+    =&~ \frac{\lambda}{4\pi\epsilon_0} \frac{2(y-y_0)}{(x-x_0)^2 + (y - y_0)^2} - \frac{\lambda}{4\pi\epsilon_0} \frac{2(y-y_0)}{(x+x_0)^2 + (y - y_0)^2}\cr
+    &-\frac{\lambda}{4\pi\epsilon_0} \frac{2(y+y_0)}{(x-x_0)^2 + (y + y_0)^2} + \frac{\lambda}{4\pi\epsilon_0} \frac{2(y+y_0)}{(x+x_0)^2 + (y + y_0)^2}
 \end{align}
-Since $\vec E = - \nabla \Phi$ and $\int_S \vec E \cdot \hat n da = \int_V \frac{\rho(\vec x')}{\epsilon_0} d^3 x'$, we have
+It is easily seen that at $x = 0$,
 \begin{equation}
-    \Phi'(\vec x) = \Phi(\vec x)~.
+    E_y (x=0,y) = 0~.
 \end{equation}
-Therefore, the addition of $F(\vec x)$ to the Green function does not affect the potential $\Phi(\vec x)$.
-
-\newpage
-\noindent{\bf 2.2} (a) Suppose the original charge is at $\vec y$. Substitute the conductor with an image charge at $\vec y'$ with charge $q'$. The potential can be written as
+Similarly, at $y = 0$, the tangential electric field should be along $x$ axis.
+\begin{align} \label{eqn:partial-x}
+    E_x(x,y) =&~ - \partial_x \Phi(x,y) \cr
+    =&~ \frac{\lambda}{4\pi\epsilon_0} \frac{2(x-x_0)}{(x-x_0)^2 + (y - y_0)^2} - \frac{\lambda}{4\pi\epsilon_0} \frac{2(x+x_0)}{(x+x_0)^2 + (y - y_0)^2}\cr
+    &-\frac{\lambda}{4\pi\epsilon_0} \frac{2(x-x_0)}{(x-x_0)^2 + (y + y_0)^2} + \frac{\lambda}{4\pi\epsilon_0} \frac{2(x+x_0)}{(x+x_0)^2 + (y + y_0)^2}
+\end{align}
+It is easily seen that at $y = 0$,
 \begin{equation}
-\Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \left(\frac{q}{|\vec x - \vec y|} + \frac{q'}{|\vec x - \vec y'|} \right)~.
-\end{equation}
-The potential has to vanish on conductor, so $\Phi(|\vec x| = a) = 0$
-\begin{equation}
-    \Phi(|\vec x| = a) = \frac{1}{4\pi \epsilon_0} \left( \frac{q}{\sqrt{a^2 + y^2 - 2ay\cos\theta}} + \frac{q'}{ \sqrt{a^2 + y'^2 -2 ay' \cos \theta}}\right)~.
-\end{equation}
-Therefore, $q$ and $q'$ should have different signs and
-\begin{equation}
-    \frac{q^2}{q'^2} = \frac{a^2 + y^2 - 2ay\cos\theta}{a^2 + y'^2 -2 ay' \cos\theta}~,
-\end{equation}
-which leads to
-\begin{equation}
-    y' = \frac{a^2}{y}, \quad q' = - \frac{a}{y}q
-\end{equation}
-By symmetry, $\vec y'$ has to be parallel with $\vec y$, therefore, for $|\vec x| < a$,
-\begin{equation}
-    \Phi(\vec x') = \frac{q}{4\pi \epsilon_0} \left( \frac{1}{|\vec x - \vec y|} - \frac{a/y}{|\vec x - (a^2/y^2) \vec y|} \right)~.
+    E_x(x,y=0) = 0~.
 \end{equation}
 
 \newpage
-\noindent(b) The surface charge density can be evaluated as
+\noindent {\bf 2.3} (c) At $y = 0$, the surface charge density is
+\begin{equation}
+    \sigma(x) = - \epsilon_0 \frac{\partial \Phi}{\partial y}\Bigg|_{y = 0}
+\end{equation}
+Now using result in \eqref{eqn:partial-y}, we have
+\begin{equation}
+    \sigma(x) = -\frac{\lambda}{\pi}\left( \frac{y_0}{(x-x_0)^2 + y_0^2} - \frac{y_0}{(x+x_0)^2 + y_0^2} \right)~.
+\end{equation}
+Then the total charge, per unit length in $z$ on the plane $y = 0, x \ge 0$ is
 \begin{align}
-    \sigma &= - \epsilon_0 \frac{\partial \Phi}{\partial n} \Bigg|_{|\vec x| = a}  = \epsilon_0 \frac{\partial \Phi}{\partial x} \Bigg|_{|\vec x| = a}\cr
-    &= \frac{q}{4\pi} \frac{\partial}{\partial x} \left( \frac{1}{\sqrt{x^2 + y^2 - 2xy\cos \theta}} - \frac{a/y}{\sqrt{x^2 + a^4/y^2 - 2 x a^2 \cos \theta/y} } \right)\Bigg|_{|\vec x| = a}\cr
-    &= \frac{q}{4\pi}\left( \frac{-a + y \cos\theta}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} - \frac{y\cos \theta -y^2/a}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} \right) \cr
-    &= \frac{q}{4\pi} \frac{y^2/a-a}{(a^2 + y^2 - 2ay\cos \theta)^{3/2}} = \frac{q}{4\pi ay} \frac{1-a^2/y^2}{(1+ a^2/y^2 - 2(a/y)\cos \theta)^{3/2}}~.
+    Q_x &= \int_0^\infty dx\, \sigma(x) = -\frac{\lambda}{\pi}\int_0^\infty dx\left( \frac{y_0}{(x-x_0)^2 + y_0^2} - \frac{y_0}{(x+x_0)^2 + y_0^2} \right)\cr
+    &= -\frac{\lambda}{\pi} \left(\tan^{-1}\left(\frac{x-x_0}{y_0}\right)\Bigg|_{0}^{\infty} - \tan^{-1}\left(\frac{x+x_0}{y_0}\right)\Bigg|_{0}^{\infty} \right)\cr
+    &= - \frac{2}{\pi} \lambda \tan^{-1} \left(\frac{x_0}{y_0}\right)~.
 \end{align}
 
+\newpage
+\noindent{\bf 2.3} (d) At position far from the origin $\rho \gg \rho_0$, where
+\begin{equation}
+    \rho = \sqrt{x^2 + y^2}, \quad \rho_0 = \sqrt{x_0^2 + y_0^2}
+\end{equation}
+We can expand the potential
+\begin{align}
+    \Phi(x,y) = &~ -\frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x-x_0)^2 + (y - y_0)^2}\right)
+    + \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x+x_0)^2 + (y - y_0)^2}\right)\cr
+    &+ \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x-x_0)^2 + (y + y_0)^2}\right) - \frac{\lambda}{4 \pi \epsilon_0} \ln\left({(x+x_0)^2 + (y + y_0)^2}\right)~.\cr
+    =&~ -\frac{\lambda}{4 \pi \epsilon_0} \ln\left(1 + \frac{\rho_0^2 - 2x_0 x - 2y_0 y}{\rho^2}\right) + \frac{\lambda}{4\pi \epsilon_0} \ln\left(1 + \frac{\rho_0^2 + 2x_0x - 2y_0y}{\rho^2}\right)\cr
+    &+ \frac{\lambda}{4\pi \epsilon_0} \ln\left(1 + \frac{\rho_0^2 - 2x_0x + 2y_0 y}{\rho^2} \right) - \frac{\lambda}{4\pi \epsilon_0}\ln\left( 1 + \frac{\rho_0^2 + 2x_0x + 2y_0y}{\rho^2}\right)~.\nonumber
+\end{align}
+Now using $\ln(1 + x) \approx x - \frac{x^2}{2}$ when $x$ is very small, we have
+\begin{align}
+    \Phi(x,y) \approx -\frac{\lambda}{4\pi \epsilon_0} \Bigg(&\frac{\rho_0^2 - 2x_0 x - 2y_0y}{\rho^2} -\frac{\rho_0^2 + 2x_0x -2y_0y}{\rho^2}  \cr
+    &-\frac{\rho_0^2 - 2x_0 x + 2y_0 y}{\rho^2} + \frac{\rho_0^2 + 2x_0 x + 2y_0 y}{\rho^2}\Bigg)\cr
+    + \frac{\lambda}{8\pi \epsilon_0} \Bigg[& \left(\frac{\rho_0^2 - 2x_0 x - 2y_0y}{\rho^2}\right)^2 - \left(\frac{\rho_0^2 + 2x_0 x - 2y_0y}{\rho^2}\right)^2 \cr
+    &- \left(\frac{\rho_0^2 - 2x_0 x + 2y_0 y}{\rho^2} \right)^2 + \left(\frac{\rho_0^2 + 2x_0 x + 2y_0y}{\rho^2} \right)^2 \Bigg]\cr
+    =\frac{\lambda}{8 \pi \epsilon_0 \rho^4} &\times 32 x_0 y_0 x y = \frac{4\lambda}{\pi \epsilon_0} \frac{(x_0 y_0)(xy)}{\rho^4}~.
+\end{align}
 
 \newpage
-\noindent(c) Using the simple method, we can consider the force acting on $q$, arising from the image charge $q'$. The force is then
+\noindent{\bf 2.7} (a) The general Green function is of the form
 \begin{equation}
-    \vec F = \frac{1}{4\pi \epsilon_0} q q' \frac{\vec y - \vec y'}{|\vec y - \vec y'|^3} = \frac{q^2 a}{4\pi \epsilon_0 y^3} \frac{\hat y}{\left(1- \frac{a^2}{y^2}\right)^2}~.
+    G(\vec x, \vec x') = \frac{1}{|\vec x - \vec x'|} + F(\vec x, \vec x')~,
+\end{equation}
+where $\nabla^2 F(\vec x, \vec x') = 0$. And the Dirichlet boundary condition implies that the Green function has to vanish on $z = 0$ surface. We can view the problem as a unit charge at $x'$, with a conducting plane at $z = 0$. Suppose $\vec x' = (x', y', z')$, we can then put the image charge at $(x',y',-z')$ with negative unit charge. The potential is then given by
+\begin{equation}
+    \Phi
 \end{equation}
 
 \end{document}
