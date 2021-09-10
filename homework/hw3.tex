@@ -88,8 +88,96 @@ Now using $\ln(1 + x) \approx x - \frac{x^2}{2}$ when $x$ is very small, we have
     G(\vec x, \vec x') = \frac{1}{|\vec x - \vec x'|} + F(\vec x, \vec x')~,
 \end{equation}
 where $\nabla^2 F(\vec x, \vec x') = 0$. And the Dirichlet boundary condition implies that the Green function has to vanish on $z = 0$ surface. We can view the problem as a unit charge at $x'$, with a conducting plane at $z = 0$. Suppose $\vec x' = (x', y', z')$, we can then put the image charge at $(x',y',-z')$ with negative unit charge. The potential is then given by
+\begin{align}
+    \Phi(\vec x) = \frac{q}{4\pi \epsilon_0} \Bigg(\frac{1}{\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \cr
+    - \frac{1}{\sqrt{(x-x')^2 + (y-y')^2 + (z+z')^2}}\Bigg)~.
+\end{align}
+And the Green function should be
+\begin{align}
+    G_D(\vec x, \vec x') =  \frac{1}{|\vec x - \vec x'|} - \frac{1}{|\vec x - \vec x''|}~,
+\end{align}
+where $\vec x'' = (x', y', -z')$.
+
+\newpage
+\noindent{\bf 2.7} (b) We have
 \begin{equation}
-    \Phi
+    \Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \int_V \rho(\vec x') G_D(\vec x, \vec x') d^3 x' - \frac{1}{4\pi} \oint_S \Phi(\vec x') \frac{\partial G_D}{\partial n'} da'
+\end{equation}
+Since there is no charge distribution, we have
+\begin{equation}
+    \Phi(\vec x) = - \frac{1}{4\pi} \oint_S \Phi(\vec x') \frac{\partial G_D}{\partial n'} da'~.
+\end{equation}
+The normal vector direction is along the $-z'$ direction. So
+\begin{equation}
+    \frac{\partial G_D}{\partial n'} = - \frac{\partial G_D}{\partial z'} = -\frac{z-z'}{|\vec x - \vec x'|^3} - \frac{z + z'}{|\vec x - \vec x''|^3}~.
+\end{equation}
+When restricted to the surface, we have $\vec x' = \vec x'' = (x', y', 0)$ and
+\begin{equation}
+    \frac{\partial G_D}{\partial n'} = - \frac{2 z}{|\vec x - \vec x'|^3}~.
+\end{equation}
+Now we change to cylindrical coordinates with
+$$
+x = \rho \cos \phi, \quad y = \rho \sin \phi, \quad x' = \rho' \cos \phi', \quad y' = \rho' \sin \phi'~.
+$$
+Then in cylindrical coordinates,
+\begin{equation}
+    \frac{\partial G_D}{\partial n'} = -\frac{2z}{(\rho^2 + \rho'^2 - 2\rho \rho' \cos(\phi - \phi') + z^2)^{3/2}}
+\end{equation}
+and
+\begin{align}
+    \Phi(\rho, \phi, \theta) = - \frac{V}{4\pi} \int_0^a d\rho' \int_0^{2\pi} \rho' d \phi' \, \frac{\partial G_D}{\partial n'}
+\end{align}
+After simplification,
+\begin{equation} \label{eqn:phi}
+    \Phi(\rho, \phi, \theta) =  \frac{Vz}{2\pi} \int_0^a d\rho' \int_0^{2\pi} \rho' d \phi' \, (\rho ^2 + \rho'^2 - 2\rho \rho' \cos(\phi - \phi') + z^2)^{-3/2}~.
 \end{equation}
 
+\newpage
+\noindent{\bf 2.7} (c) Using \eqref{eqn:phi}, at $\rho = 0$, we have
+\begin{align}
+    \Phi &= \frac{Vz}{2\pi} \int_0^a d\rho' \int_0^{2\pi} \rho' d \phi' \, ( \rho'^2 + z^2)^{-3/2}\cr
+    &= Vz \int_0^a d\rho' \frac{\rho'}{(\rho'^2 + z^2)^{3/2}} \cr
+    & = - Vz \int_0^a d \rho' \frac{\partial}{\partial \rho'} \left(\frac{1}{\sqrt{\rho'^2 + z^2} }\right)\cr
+    & = V \left(1 - \frac{z}{\sqrt{a^2 + z^2}}\right)~.
+\end{align}
+
+\newpage
+\noindent{\bf 2.7} (d) For $\rho^2 + z^2 \gg a^2$, we have
+\begin{align}
+    \Phi &=  \frac{Vz}{2\pi} \int_0^a d\rho' \int_0^{2\pi} \rho' d \phi' \, (\rho ^2 + \rho'^2 - 2\rho \rho' \cos(\phi - \phi') + z^2)^{-3/2}\cr
+    &=\frac{Vz}{2\pi} \frac{1}{(\rho^2 + z^2)^{3/2}} \int_0^a d\rho'\int_0^{2\pi} \rho' d \phi' \, \left(1+ \frac{\rho'^2 - 2\rho \rho' \cos(\phi - \phi')}{\rho^2 + z^2}\right)^{-3/2} \cr
+    & = \frac{Vz}{2\pi} \frac{1}{(\rho^2 + z^2)^{3/2}} \int_0^a d\rho' \int_0^{2\pi} \rho' d\phi' \left(1 - \frac32 u + \frac{15}{8} u^2+ \cdots\right)~,
+\end{align}
+where
+\begin{equation}
+    u = \frac{\rho'^2 - 2\rho \rho' \cos(\phi - \phi')}{\rho^2 + z^2}~.
+\end{equation}
+Evaluating the integrals terms by terms
+\begin{align}
+    &\int_0^a d \rho' \int_0^{2\pi} \rho' d \phi'\, 1 = \pi a^2 \cr
+    &\int_0^a d \rho' \int_0^{2\pi} \rho' d \phi'\, \left(-\frac32 u\right)= -\frac32 \frac{1}{\rho^2 + z^2} \left(\frac{\pi}{2}a^4\right)\cr
+    &\int_0^a d \rho' \int_0^{2\pi} \rho' d \phi'\, \left(\frac{15}{8} u^2\right)= \frac{15}{8} \frac{1}{(\rho^2 + z^2)^2}  2\pi \left( \frac16 a^6 + \frac 12 \rho^2 a^4\right)~.
+\end{align}
+Collecting these terms, we have
+\begin{equation} \label{eqn:phi2}
+    \Phi = \frac{Va^2}{2} \frac{z}{(\rho^2 + z^2)^{3/2}} \left[1 - \frac{3a^2}{4(\rho^2 + z^2)} + \frac{5(3\rho^2 a^2 + a^4)}{8(\rho^2 + z^2)^2} + \cdots\right]
+\end{equation}
+Check: from \eqref{eqn:phi2}, when $\rho = 0$, we have
+\begin{equation} \label{eqn:check}
+    \Phi = \frac{Va^2}{2z} \left( 1- \frac34 \frac{a^2}{z^2} + \frac{5}{8} \frac{a^4}{z^4} + \cdots \right)~.
+\end{equation}
+From \eqref{eqn:phi}, when $z \gg a$, the potential
+\begin{equation} \label{eqn:check2}
+\Phi = V\left(1 - \frac{1}{\sqrt{1 + \frac{a^2}{z^2}}}\right)~.
+\end{equation}
+Since for small $u$,
+\begin{equation}
+    \frac{1}{\sqrt{1+u}} = 1 - \frac{1}{2}u + \frac{3}{8}u^2 - \frac{5}{16} x^3 + \cdots
+\end{equation}
+Therefore, we can expand \eqref{eqn:check2} as
+\begin{align}
+    \Phi &= V\left(1 - 1 + \frac12 \frac{a^2}{z^2}  - \frac38 \frac{a^4}{z^4}  + \frac{5}{16} \frac{a^6}{z^6} +\cdots\right) \cr
+    &=\frac{Va^2}{2z^2} \left( 1- \frac34 \frac{a^2}{z^2} + \frac{5}{8} \frac{a^4}{z^4} + \cdots\right),
+\end{align}
+in agreement with \eqref{eqn:check}.
 \end{document}
