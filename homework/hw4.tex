@@ -15,47 +15,57 @@ HW 4 2.12 2.13 2.17 2.24
 \begin{equation}
     \Phi(\rho, \phi) = a_0 + b_0 \ln \rho + \sum_{n=1}^\infty a_n \rho^n \sin(n \phi + \alpha_n) + \sum_{n=1}^\infty b_n \rho^{-n} \sin(n \phi + \beta_n)~.
 \end{equation}
-Also,
-\begin{align}
-    \sin(n\phi + \alpha_n) &= \cos\alpha_n \sin(n \phi) + \sin \alpha_n  \cos(n \phi) ~, \\
-    \sin(n\phi + \beta_n) &= \cos\beta_n \sin(n \phi) + \sin \beta_n  \cos(n \phi)~.
-\end{align}
 For potential inside the cylinder, we have to set $b_n = 0$ for $n \ge 0$.
 Then,
 \begin{equation}
-    \Phi(\rho, \phi) = a_0 + \sum_{n=1}^\infty a_n \rho^n\left[\cos\alpha_n \sin(n \phi) + \sin \alpha_n  \cos(n \phi)\right]
+    \Phi(\rho, \phi) = a_0 + \sum_{n=1}^\infty a_n \rho^n\left[\cos\alpha_n \sin(n \phi) + \sin \alpha_n  \cos(n \phi)\right]~.
 \end{equation}
-Then evaluating,
-\begin{align}
-    \int_0^{2\pi} \Phi(\rho, \phi) \sin(n \phi) d\phi &= \pi a_n \rho^n \cos\alpha_n ~,\\
-    \int_0^{2\pi} \Phi(\rho, \phi) \cos(n \phi) d\phi & = \pi a_n \rho^n \sin\alpha_n ~.
-\end{align}
-Therefore, we obtain
-\begin{align}
-    a_n = \frac{\rho^{-n}}{\pi \cos \alpha_n}  \int_0^{2\pi } \Phi(\rho, \phi) \sin(n \phi) d \phi = \frac{\rho^{-n}}{\pi \sin \alpha_n}  \int_0^{2\pi } \Phi(\rho, \phi) \cos(n \phi) d \phi
-\end{align}
-Plug this back into the potential, we obtain
-Then evaluating,
-\begin{align}
-    \int_0^{2\pi} \Phi(\rho, \phi) \sin(n \phi) d\phi &= \pi a_n \rho^n \cos\alpha_n + \pi b_n \rho^{-n} \cos \beta_n~,\\
-    \int_0^{2\pi} \Phi(\rho, \phi) \cos(n \phi) d\phi & = \pi a_n \rho^n \sin\alpha_n + \pi b_n \rho^{-n} \sin\beta_n~.
-\end{align}
 Since we have specified the potential on the surface of the cylinder of radius $b$, we can set $\rho = b$, and obtain,
+\begin{equation}
+    \Phi(b, \phi) = a_0 + \sum_{n=1}^\infty a_n b^n \left[\cos\alpha_n \sin(n \phi) + \sin \alpha_n  \cos(n \phi)\right]~.
+\end{equation}
+Then for $n \ge 1$, evaluating,
 \begin{align}
-    b^n a_n (\sin \alpha_n \cos \beta_n - \cos \alpha_n \sin \beta_n) = \frac{1}{\pi} \int_{0} ^{2\pi} \Phi(b, \phi) \left[\cos(n\phi) \cos\beta_n-\sin(n \phi)\sin\beta_n\right] d\phi\cr
-    b^{-n} b_n (\sin \beta_n \cos \alpha_n - \cos \beta_n \sin \alpha_n) = \frac{1}{\pi} \int_{0} ^{2\pi} \Phi(b, \phi) \left[\cos(n\phi) \cos\alpha_n-\sin(n \phi)\sin\alpha_n\right] d\phi \nonumber
+    \int_0^{2\pi} \Phi(b, \phi) \sin(n \phi) d\phi &= \pi a_n b^n \cos\alpha_n ~,\\
+    \int_0^{2\pi} \Phi(b, \phi) \cos(n \phi) d\phi & = \pi a_n b^n \sin\alpha_n ~.
 \end{align}
-Therefore, we can derive, for $\alpha_n \neq \beta_n$,
+Therefore, we obtain for $n \ge 1$,
 \begin{align}
-    a_n &= \frac{b^{-n} }{\pi \sin(\alpha_n - \beta_n)} \int_0^{2\pi} \Phi(b, \phi) \cos(n \phi + \beta_n) d\phi\\
-    b_n &= \frac{b^n}{\pi \sin(\beta_n - \alpha_n)} \int_0^{2\pi} \Phi(b, \phi)\cos(n \phi + \alpha_n) d\phi
+    a_n = \frac{b^{-n}}{\pi \cos \alpha_n}  \int_0^{2\pi } \Phi(\rho, \phi) \sin(n \phi) d \phi = \frac{b^{-n}}{\pi \sin \alpha_n}  \int_0^{2\pi } \Phi(\rho, \phi) \cos(n \phi) d \phi~.
 \end{align}
-For potential inside the cylinder, we have to set $b_n = 0$ for $n \ge 0$, and neglecting the constant term,
+For $a_0$, we have
+\begin{equation}
+    a_0 = \frac{1}{2\pi}\int_0^{2\pi} \Phi(b, \phi) \cos(0 \phi) d\phi = \frac{1}{2\pi} \int_0^{2\pi} \Phi(b,\phi) d\phi~.
+\end{equation}
+we obtain
 \begin{align}
-    \Phi(\rho, \phi) &= \sum_{n=1}^\infty a_n \rho^n \sin(n \phi + \alpha_n)\\
-    &= \frac1\pi\int_{0}^{2\pi} d\phi' \Phi(b, \phi') \sum_{n=1}^\infty \frac{b^{-n} \rho^n \sin(n \phi + \alpha_n)}{\sin(\alpha_n - \beta_n)}  \cos(n \phi'+ \beta_n) \cr
-    & = \frac{1}{\pi} \int_0^{2\pi} d \phi' \Phi(b, \phi'){\rm Im} \sum_{n=1}^\infty b^{-n}\rho^n
+    \Phi(\rho, \phi) &= \frac{1}{2\pi} \int_0^{2\pi} \Phi(b,\phi') d\phi' \cr
+    &~~~~+ \frac1\pi \sum_{n=1}^\infty  \frac{\rho^n}{b^n} \int_0^{2\pi} \Phi(b, \phi') \left[\sin(n\phi') \sin(n \phi) + \cos(n \phi') \cos(n \phi)\right]d\phi' \cr
+    &= \frac{1}{2\pi} \int_0^{2\pi} \Phi(b,\phi') d\phi' + \frac{1}{\pi} \int_0^{2\pi} d\phi' \Phi(b, \phi')\sum_{n=1}^\infty \frac{\rho^n}{b^n} \cos[n(\phi - \phi')]\cr
+    & = \frac{1}{2\pi} \int_0^{2\pi} \Phi(b,\phi') d\phi' + \frac{1}{\pi} \int_0^{2\pi} d\phi' \Phi(b, \phi')\,{\rm Re}\sum_{n=1}^\infty \frac{\rho^n}{b^n} e^{in(\phi - \phi')}
 \end{align}
+We can evaluate the summation (using $\theta = \phi - \phi'$ for short),
+\begin{align}
+    \sum_{n=1}^\infty \left(\frac{\rho}{b} e^{i(\phi - \phi')}\right)^n &= \frac{\rho e^{i(\phi - \phi')}}{b - \rho e^{i(\phi - \phi')}} = \frac{\rho \cos \theta + i \rho \sin\theta}{b - \rho \cos\theta - i \rho \sin \theta}\cr
+    & = \frac{(\rho \cos \theta + i \rho \sin \theta) (b - \rho \cos \theta + i \rho \sin \theta)}{(b-\rho\cos\theta)^2 + \rho^2 \sin^2\theta}
+\end{align}
+Therefore its real part is given by
+\begin{equation}
+    {\rm Re} \sum_{n=1}^\infty \left(\frac{\rho}{b} e^{i(\phi - \phi')}\right)^n = \frac{b \rho \cos \theta - \rho^2}{b^2 + \rho^2 - 2b\rho \cos\theta}~.
+\end{equation}
+Therefore, for potential inside the cylinder,
+\begin{align}
+    \Phi(\rho, \phi) &= \frac{1}{2\pi} \int_0^{2\pi} \Phi(b, \phi')\left(1 + \frac{2 b\rho \cos \theta - 2\rho^2}{b^2 + \rho^2 - 2 b\rho \cos\theta}\right)d\phi'\cr
+    &= \frac{1}{2\pi} \int_0^{2\pi} \Phi(b, \phi') \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi - \phi')} d\phi'~.
+\end{align}
+
+For potential outside the cylinder, we have to set $a_n = 0, n\ge 1$ and $b_0 = 0$, we just need to swap $b$ and $\rho$ in the fraction in the above expression. Therefore, for potential outside the cylinder,
+\begin{equation}
+    \Phi(\rho, \phi) = -\frac{1}{2\pi} \int_0^{2\pi} \Phi(b, \phi') \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi - \phi')} d\phi'~.
+\end{equation}
+
+\newpage
+
 
 
 
