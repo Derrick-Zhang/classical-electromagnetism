@@ -9,7 +9,8 @@
 
 \begin{center}
 {\bf Phys 5405}\\
-HW 4 2.12 2.13 2.17 2.24
+HW 4 \\
+2.12 2.13 2.17 2.24
 \end{center}
 \textbf{2.12} Starting with
 \begin{equation}
@@ -65,6 +66,282 @@ For potential outside the cylinder, we have to set $a_n = 0, n\ge 1$ and $b_0 = 
 \end{equation}
 
 \newpage
+\noindent{\bf 2.13} (a) In last problem, we have computed the potential inside a cylinder is
+\begin{align}
+    \Phi(\rho, \phi) &= \frac{1}{2\pi} \int_0^{2\pi} \Phi(b, \phi') \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi' - \phi)} d\phi'
+\end{align}
+Consider the integral of the form,
+\begin{align}
+    &\int \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi' - \phi)} d\phi'\cr
+    &= \int \frac{(b^2 - \rho^2) (\sin^2 \frac{\phi'-\phi}{2}+ \cos^2 \frac{\phi'-\phi}{2}) d\phi'}{(b^2 + \rho^2)(\sin^2 \frac{\phi'-\phi}{2}+ \cos^2 \frac{\phi'-\phi}{2})-2b\rho( \cos^2 \frac{\phi'-\phi}{2} - \sin^2 \frac{\phi'-\phi}{2})}\cr
+    &= \int \frac{2(b^2 - \rho^2) d \tan \theta}{(b-\rho)^2 + (b+ \rho)^2 \tan^2\theta}~,
+\end{align}
+where $\theta = \frac{\phi'-\phi}{2}$. Now let $u = \tan \theta$, we have
+\begin{align}
+    \int \frac{2(b^2 - \rho^2) d u}{(b-\rho)^2 + (b+ \rho)^2 u^2} &= \frac{2(b^2 - \rho^2)}{(b-\rho)^2} \int \frac{du}{1 + u^2(b+\rho)^2/{(b-\rho)^2}}\cr
+    &= 2 \tan^{-1}\left(\frac{b + \rho}{b-\rho} u\right) \cr
+    &= 2 \tan^{-1} \left(\frac{b + \rho}{b - \rho} \tan\left(\frac{\phi'-\phi}{2}\right) \right)
+\end{align}
+Therefore, in this case, the potential is
+\begin{align}
+    \Phi(\rho, \phi) &= \frac{1}{2\pi} \int_{-\pi/2}^{\pi/2} V_1 \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi' - \phi)} d\phi'\cr
+    &~~~~+ \frac{1}{2\pi} \int_{\pi/2}^{3\pi/2} V_2 \frac{b^2 - \rho^2}{b^2 + \rho^2 - 2b\rho \cos(\phi' - \phi)} d\phi'\cr
+    &= \frac{V_1}{\pi} \tan^{-1}\left(\frac{b+\rho}{b- \rho} \tan\left(\frac{\phi'-\phi}{2}\right)\right)\Bigg|_{-\pi/2}^{\pi/2} + \frac{V_2}{\pi} \tan^{-1}\left(\frac{b+\rho}{b- \rho} \tan\left(\frac{\phi'-\phi}{2}\right)\right)\Bigg|_{\pi/2}^{3\pi/2} \nonumber
+\end{align}
+Since
+\begin{equation}
+    \tan(\alpha - \beta) = \frac{\tan\alpha - \tan \beta}{1 + \tan \alpha \tan \beta},
+\end{equation}
+therefore,
+\begin{equation}
+    \alpha - \beta + n \pi = \tan^{-1}\left(\frac{\tan \alpha - \tan \beta}{1 + \tan \alpha \tan \beta}\right)~.
+\end{equation}
+Here we add a constant factor $n\pi$ where $n \in \mathbb Z$ so that $\alpha - \beta + n\pi \in [-\frac \pi 2, \frac \pi 2]$.
+Further,
+\begin{equation}
+    \tan^{-1}x - \tan^{-1} y + n \pi = \tan^{-1}\left(\frac{x - y}{1 + xy}\right)~.
+\end{equation}
+So
+\begin{align}
+    \frac{V_1}{\pi} \tan^{-1}\left(\frac{b+\rho}{b- \rho} \tan\left(\frac{\phi'-\phi}{2}\right)\right)\Bigg|_{-\pi/2}^{\pi/2} = \frac{V_1}{\pi}\tan^{-1}\left(\frac{x-y}{1+xy}\right)+ n V_1~,
+\end{align}
+with
+\begin{align}
+    x &= \frac{b + \rho}{b - \rho} \tan\left(\frac{\pi}{4} - \frac{\phi}{2}\right) = \frac{b + \rho}{b - \rho} \frac{\cos \phi}{1 + \sin \phi}\\
+    y &= \frac{b + \rho}{b - \rho} \tan\left(-\frac{\pi}{4} - \frac{\phi}{2}\right)= \frac{b+ \rho}{b - \rho} \frac{-\cos\phi}{1 - \sin\phi}
+\end{align}
+Therefore,
+\begin{equation}
+    \frac{x-y}{1+xy} = - \frac{b^2 - \rho^2}{2b \rho \cos \phi}
+\end{equation}
+Therefore,
+\begin{equation}
+     \frac{V_1}{\pi} \tan^{-1}\left(\frac{b+\rho}{b- \rho} \tan\left(\frac{\phi'-\phi}{2}\right)\right)\Bigg|_{-\pi/2}^{\pi/2} = -\frac{V_1}{\pi}\tan^{-1}\left(\frac{b^2 - \rho^2}{2b \rho \cos \phi}\right)+ n V_1~,
+\end{equation}
+Similarly, we can compute
+\begin{equation}
+    \frac{V_2}{\pi} \tan^{-1}\left(\frac{b+\rho}{b- \rho} \tan\left(\frac{\phi'-\phi}{2}\right)\right)\Bigg|_{\pi/2}^{3\pi/2}=\frac{V_2}{\pi} \tan^{-1} \left(\frac{b^2 - \rho^2}{2b\rho \cos \phi}\right) + m V_2
+\end{equation}
+Moreover, $\tan^{-1}x + \tan^{-1}(1/x) + k\pi = \pi/2$. Therefore,
+\begin{equation}
+    \Phi(\rho , \phi) = \left(n + k_1 - \frac12\right) V_1 + \left(m - k_2 + \frac 12\right) V_2 + \frac{V_1 - V_2}{\pi} \tan^{-1}\left(\frac{2b\rho}{b^2 - \rho^2} \cos \phi\right)\nonumber~.
+\end{equation}
+Now using boundary condition, for $\cos\phi > 0$, $\Phi(\rho = b, \phi) = V_1$. For $\cos \phi < 0$, $\Phi(\rho = b, \phi) = V_2$. We can fix the integer constants and get
+\begin{equation}
+    \Phi(\rho, \phi) = \frac{V_1 + V_2}{2} + \frac{V_1 - V_2}{\pi} \tan^{-1} \left(\frac{2b\rho}{b^2 - \rho^2} \cos \phi\right)~.
+\end{equation}
+
+
+\newpage
+\noindent{\bf 2.13} (b) The surface charge density is given by
+\begin{equation}
+    \sigma = - \epsilon_0 \frac{\partial \Phi}{\partial n} \Bigg|_{\rho = b} = \epsilon_0\frac{\partial \Phi}{\partial \rho} \Bigg|_{\rho = b}
+\end{equation}
+We can calculate
+\begin{align}
+    \frac{\partial \Phi(\rho, \phi)}{\partial \rho} &= \frac{V_1 - V_2}{\pi} \partial_\rho \tan^{-1}\left(\frac{2b\rho}{b^2 - \rho^2} \cos \phi\right) \cr
+    &= \frac{V_1 - V_2}{\pi} \frac{1}{1+ \frac{4b^2 \rho^2}{(b^2 - \rho^2)^2} \cos^2 \phi} \cos \phi\, \partial_\rho \left(\frac{2b\rho}{b^2 - \rho^2}\right)\cr
+    & = \frac{V_1 - V_2}{\pi} \frac{\cos \phi}{1+ \frac{4b^2 \rho^2}{(b^2 - \rho^2)^2} \cos^2 \phi} \frac{2b(b^2 + \rho^2)}{(b^2-\rho^2)^2}\cr
+    &= \frac{V_1 - V_2}{\pi} \frac{2b (b^2 + \rho^2)\cos \phi}{(b^2 - \rho^2)^2 + 4 b^2 \rho^2 \cos^2 \phi}
+\end{align}
+Therefore,
+\begin{equation}
+    \sigma = \epsilon_0\frac{V_1 - V_2}{\pi b \cos\phi}~.
+\end{equation}
+
+
+\newpage
+\noindent{\bf 2.17} (a) The three-dimensional Green function is given by
+\begin{equation}
+    G(\vec x, \vec x') = \frac{1}{R} \equiv \frac{1}{|\vec x - \vec x'|} = \frac{1}{\sqrt{(x - x')^2 + (y - y')^2 + (z - z')^2}}
+\end{equation}
+Consider the integration
+\begin{align}
+    \int \frac 1 R d(z'-z) &= \int \frac{du}{\sqrt{(x-x')^2 + (y-y')^2 +u^2}}\cr
+    &= \ln\left(\sqrt{u^2 + (x-x')^2 + (y - y')^2} + u\right) + C
+\end{align}
+Therefore, write $a = (x-x')^2 + (y - y')^2$
+\begin{align}
+    G(x,y;x',y') &= \lim_{Z\to \infty} \int_{-Z}^Z \frac{1}{R} d(z'-z)\cr
+    &= \lim_{Z \to \infty} \ln\left(\frac{\sqrt{Z^2 + a} + Z}{\sqrt{Z^2 + a} - Z}\right) \cr
+    &= \lim_{Z\to \infty}\ln\left(\frac{(\sqrt{Z^2 + a} + Z)^2}{a}\right)\cr
+    &\sim - \ln a = -\ln[(x-x')^2 + (y - y')^2]\cr
+    &= - \ln[\rho^2 + \rho'^2 - 2\rho \rho' \cos(\phi - \phi')]~,
+\end{align}
+where we have dropped the constant term.
+
+\newpage
+\noindent{\bf 2.17} (b) The Dirac delta in polar coordinates is
+\begin{equation}
+    \frac{1}{\rho} \delta(\rho - \rho') \delta(\phi - \phi')~.
+\end{equation}
+The Green function should satisfy
+\begin{equation}
+    \nabla^2 G(\rho-\rho', \phi-\phi') = - 4\pi \frac{1}{\rho}\delta(\rho - \rho') \delta(\phi - \phi')~.
+\end{equation}
+The Laplacian in polar coordinates is
+\begin{equation}
+    \nabla^2 f = \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial f}{\partial \rho}\right) + \frac{1}{\rho^2} \frac{\partial^2 f}{\partial \phi^2}~.
+\end{equation}
+Since Green function is symmetric in $\vec r$ and $\vec r'$, I interchanged $\rho, \rho'$ and $\phi, \phi'$ in the following discussion.
+Consider a solution to the Green function equation of the form
+$g(\rho, \rho') h(\phi - \phi')$.
+For $\vec r \neq \vec r'$, consider $\nabla^2 (gh) = 0$,
+\begin{equation}
+    \frac{h}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g}{\partial \rho}\right) + \frac{g}{\rho^2} \frac{\partial^2 h}{\partial \phi^2} = 0
+\end{equation}
+Using separation of variables, we have
+\begin{equation}
+    \frac{\rho}{g} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g}{\partial \rho}\right) = - \frac{1}{h}\frac{\partial ^2 h}{\partial \phi^2} = m^2~.
+\end{equation}
+We can solve for $h(\phi - \phi') = A e^{im(\phi - \phi')}$, since it should be a period function in $\phi$, $m$ has to be an integer. We can write down a general solution as the superposition
+$$G = \sum_{m} a_m g_m(\rho, \rho')e^{im(\phi - \phi')}$$
+and for $\rho \neq \rho'$
+\begin{equation}
+    \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho^2}g_m = 0~.
+\end{equation}
+Now calculating $\nabla^2$ again,
+\begin{equation}
+    \nabla^2 G =  \sum_m a_m e^{im (\phi - \phi')} \left[\frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho^2}g_m\right] = -4\pi\frac{\delta(\rho - \rho')}{\rho} \delta(\phi - \phi') .\nonumber
+\end{equation}
+\begin{enumerate}
+    \item If we start from all the $a_m$'s are $1/(2\pi)$, then
+    \begin{align}
+        \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho^2}g_m &= 2\pi\int_0^{2\pi} d\phi \left(\frac{1}{2\pi} e^{-im(\phi - \phi')} \nabla^2 G\right) \cr
+        &= - 4 \pi \frac{\delta (\rho - \rho')}{\rho}~,
+    \end{align}
+    where I have used the fact that
+    \begin{equation}
+        \frac{1}{2\pi} \int_0^{2\pi} e^{i(m-n)\phi} d\phi = \delta_{mn}~.
+    \end{equation}
+    \item If we start from
+    \begin{equation}
+        \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho^2}g_m = - 4 \pi \frac{\delta (\rho - \rho')}{\rho}~,
+    \end{equation}
+    then
+    \begin{equation}
+        -4\pi \frac{\delta(\rho - \rho')}{\rho} a_m = \int_0^{2\pi} d\phi \left(\frac{1}{2\pi} e^{-im(\phi - \phi')} \nabla^2 G\right)~.
+    \end{equation}
+    and
+    \begin{equation}
+        a_m = -\frac{1}{4\pi} \int \rho d\rho\int d \phi\left(\frac{1}{2\pi} e^{-im(\phi - \phi')} \nabla^2 G\right) = \frac{1}{2\pi}~.
+    \end{equation}
+\end{enumerate}
+
+\newpage
+\noindent{\bf 2.17} (c) Still, I interchanged $\rho$ and $\rho'$. First consider $m \neq 0$. For $\rho \neq \rho'$, the solution to
+\begin{equation}
+    \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho^2}g_m = 0
+\end{equation}
+is simply $A_m \rho^{|m|} + B_m \rho^{-|m|}$. Now consider finiteness. For $\rho < \rho'$, we would have
+\begin{equation}
+    g_m(\rho, \rho') = A_m \rho^{|m|}~.
+\end{equation}
+For $\rho > \rho'$, we would have
+\begin{equation}
+    g_m(\rho, \rho') = B_m \rho^{-|m|}~.
+\end{equation}
+In order for $g_m$  to be continuos, we should have
+\begin{equation}
+    A_m \rho'^{|m|} = B_m \rho'^{-|m|} = C_m~.
+\end{equation}
+Therefore,
+\begin{align}
+    g_m(\rho, \rho') &= \begin{cases}
+        C_m \left(\frac{\rho}{\rho'}\right)^{|m|} & \rho < \rho'\\
+        C_m \left(\frac{\rho'}{\rho}\right)^{|m|} & \rho > \rho'
+    \end{cases} \cr
+    & = C_m \left(\frac{\rho_<}{\rho_>}\right)^{|m|}~.
+\end{align}
+When $\rho = \rho'$, there is a singularity. Integrate the differential equation
+\begin{equation}
+    \frac{\partial}{\partial \rho} \left(\rho \frac{\partial g_m}{\partial \rho}\right)-\frac{m^2}{\rho}g_m = - 4 \pi \delta (\rho - \rho')~,
+\end{equation}
+for $\rho$ in a small interval from $\rho'-\epsilon$ to $\rho'+\epsilon$, and take the limit $\epsilon \to 0$, since the function $g_m / \rho$ is finite, we obtain
+\begin{equation}
+    \rho \frac{\partial g_m}{\partial \rho} \Bigg|_{\rho'+\epsilon} - \rho \frac{\partial g_m}{\partial \rho} \Bigg|_{\rho'-\epsilon} = -4\pi
+\end{equation}
+and
+\begin{equation}
+    (\rho' + \epsilon) g_m'\big |_{\rho' + \epsilon} - (\rho' - \epsilon) g_m'\big |_{\rho' - \epsilon} = - 4\pi.
+\end{equation}
+Taking $\epsilon \to 0$, we have
+\begin{align}
+    g'_m\big|_{\rho' + \epsilon} - g_m'\big|_{\rho' - \epsilon} = -\frac{4\pi}{\rho'}\\
+    -|m| \frac{C_m}{\rho'} - |m| \frac{C_m}{\rho'} = - \frac{4\pi}{\rho'}
+\end{align}
+We can obtain, $C_m = 2\pi /|m|$ for $m \neq 0$. Therefore,
+\begin{equation}
+    g_m(\rho, \rho') = \frac{2\pi}{|m|} \left(\frac{\rho_<}{\rho_>}\right)^{|m|}, \quad m \neq 0
+\end{equation}
+For $m = 0$, consider $g_0$, if $\rho < \rho'$, the general solution is a constant $A$. If $\rho > \rho'$, the general solution is $B \ln \rho$. The continuity gives $A = B \ln \rho'$. The integration procedure would give
+\begin{equation}
+    \frac{B}{\rho'} - 0 = - \frac{4\pi}{\rho'}~.
+\end{equation}
+Therefore,
+\begin{align}
+    g_0(\rho, \rho') &= \begin{cases}
+        -4\pi \ln \rho' & \rho < \rho'\\
+        -4\pi \ln \rho & \rho > \rho'
+    \end{cases}\cr
+    &=-2 \pi \ln (\rho_>^2)~.
+\end{align}
+
+Therefore the Green function is
+\begin{align}
+    G&= \frac{1}{2\pi} \sum_{m = - \infty}^\infty g_m(\rho, \rho') e^{im(\phi - \phi')} \cr
+    &= - \ln (\rho^2_>) + \sum_{m \neq 0} \frac1{|m|} \left(\frac{\rho_<}{\rho_>}\right)^{|m|} e^{im(\phi - \phi')} \cr
+    & = - \ln (\rho^2_>) + \sum_{m = 1}^\infty \frac1{m} \left(\frac{\rho_<}{\rho_>}\right)^{m} e^{im(\phi - \phi')} + \sum_{m = -1}^{-\infty} \frac1{-m} \left(\frac{\rho_<}{\rho_>}\right)^{-m} e^{im(\phi - \phi')}\cr
+    & = - \ln (\rho^2_>) + \sum_{m = 1}^\infty \frac1{m} \left(\frac{\rho_<}{\rho_>}\right)^{m} e^{im(\phi - \phi')} + \sum_{m = 1}^{\infty} \frac1{m} \left(\frac{\rho_<}{\rho_>}\right)^{m} e^{-im(\phi - \phi')}\cr
+    & = - \ln (\rho^2_>) + 2\sum_{m = 1}^\infty \frac1{m} \left(\frac{\rho_<}{\rho_>}\right)^{m} \left(e^{im(\phi - \phi')} +  e^{-im(\phi - \phi')} \right)/2\cr
+    & = - \ln (\rho^2_>) + 2\sum_{m = 1}^\infty \frac1{m} \left(\frac{\rho_<}{\rho_>}\right)^{m} \cdot \cos[m(\phi - \phi')]~.
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\noindent{\bf 2.24} We want to show that, for $0 < \phi, \phi' < \beta$,
+$$
+\delta(\phi - \phi') = \frac{2}{\beta} \sum_{m=1}^\infty \sin(m \pi \phi/\beta) \sin(m \pi \phi'/\beta)~.
+$$
+Since $\sin(m \pi \phi /\beta)$ with integer $m$ form a complete set for functions on the interval $[0, \beta]$ with Dirichlet boundary conditions. We can write for an arbitrary function $f(\phi)$ in $\phi$,
+\begin{equation}
+    f(\phi) = \sum_{m = 1}^{\infty} a_m \sin(m \pi \phi /\beta)
+\end{equation}
+For a positive integer $n$, consider the integral
+\begin{align}
+    \int_0^{\beta} f(\phi) \sin(n \pi \phi/\beta) d\phi &= \sum_{m=1}^{\infty} a_m \int_0^\beta \sin(n\pi \phi/\beta) \sin(m \pi \phi /\beta) d\phi
+\end{align}
+Since
+\begin{equation}
+    \sin(n\pi \phi /\beta) \sin(m\pi \phi/\beta) = \frac12 [\cos((n-m)\pi \phi/\beta) -\cos((n+m)\pi \phi/\beta)]
+\end{equation}
+Integrate $\phi$ over $[0, \beta]$, we obtain
+\begin{align}
+    \int_0^{2\pi} \sin(n\pi \phi/\beta) \sin(m \pi \phi/\beta) d\phi &= \frac{\beta}{2} (\delta_{n,m} - \delta_{n,-m}) \cr
+    &= \frac{\beta}{2} \delta_{n,m}~,
+\end{align}
+since we are assuming both $n$ and $m$ are positive. Plug this back into (58), we obtain
+\begin{equation}
+    a_n = \frac{2}{\beta} \int_0^\beta f(\phi) \sin(n \pi \phi /\beta)~.
+\end{equation}
+Plug the formula of $a_m$ back to (57), we obtain
+\begin{align}
+    f(\phi) &= \sum_{m = 1}^\infty a_m \sin(m \pi \phi/\beta)\cr
+    &= \int_0^\beta \left(\frac 2 \beta \sum_{m=1}^\infty \sin(m \pi \phi'/\beta) \sin(m \pi \phi /\beta)\right) f(\phi')
+\end{align}
+Therefore what's inside the bracket is a delta function,
+\begin{equation}
+    \delta(\phi - \phi') = \frac{2}{\beta} \sum_{m=1}^\infty \sin(m \pi \phi/\beta) \sin(m \pi \phi'/\beta)~.
+\end{equation}
 
 
 
