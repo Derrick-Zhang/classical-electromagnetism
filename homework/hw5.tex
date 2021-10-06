@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 5 \\
+3.1 3.5 3.7
+\end{center}
+{\bf 3.1}
+Since there is azimuthal symmetry, the general solution is
+\begin{equation}
+    \Phi(r, \theta) = \sum_{l = 0}^\infty [A_l r^l + B_l r^{-(l+1)}] P_l(\cos \theta)~.
+\end{equation}
+Then the boundary conditions are: when $0 < \theta < \pi/2$,
+\begin{equation}
+    \Phi(r = a, \theta) = V~, \quad \Phi(r=b, \theta) = 0~.
+\end{equation}
+When $\pi/2 < \theta < \pi$, we have
+\begin{equation}
+    \Phi(r = a, \theta) = 0~, \quad \Phi(r=b, \theta) = V~.
+\end{equation}
+Therefore, written explicitly,
+\begin{equation}\nonumber
+    \sum_{l=0}^\infty [A_l a^l + B_l a^{-(l+1)}] P_l (\cos \theta) = \begin{cases}
+        V~, & 0 < \theta < \pi/2\\
+        0~, & \pi/2 < \theta < \pi
+    \end{cases}~,
+\end{equation}
+and
+\begin{equation}
+    \sum_{l=0}^\infty [A_l b^l + B_l b^{-(l+1)}] P_l (\cos \theta) = \begin{cases}
+        0~, & 0 < \theta < \pi/2\\
+        V~, & \pi/2 < \theta < \pi
+    \end{cases}~,
+\end{equation}
+Since the Legendre polynomials satisfy
+\begin{equation}
+    \int_{-1}^{1} P_m(x)P_n(x) dx = \frac{2}{2n + 1} \delta_{mn}~.
+\end{equation}
+We can get
+\begin{equation}
+    \int_0^\pi P_m(\cos \theta) P_n(\cos \theta) \sin \theta d\theta  = \frac{2}{2n+1} \delta_{mn}~.
+\end{equation}
+Therefore,
+\begin{equation}
+    \frac{2}{2l+1} (A_l a^l + B_l a^{-(l+1)})
+    = \int_0^{\pi/2} V P_l(\cos\theta) \sin\theta d \theta~,
+\end{equation}
+\begin{equation}
+    \frac{2}{2l+1} (A_l b^l + B_l b^{-(l+1)}) = \int_{\pi/2}^\pi V P_l(\cos \theta) \sin\theta d \theta~.
+\end{equation}
+Now make change of variables $x = \cos \theta$ and $x = - \cos \theta$ and use the fact that $P_n(-x) = (-1)^n P_n(x)$, we have
+\begin{align}
+    A_l a^l + B_l a^{-(l+1)} &= \frac{2l+1}{2} V \int_0^1 P_l(x) dx~,\\
+    A_l b^l + B_l b^{-(l+1)} &= \frac{2l+1}{2} V (-1)^l \int_0^1 P_l(x) dx~.
+\end{align}
+And we can solve for $A_l$ and $B_l$:
+\begin{align}
+    A_l &= \frac{(-1)^l b^{l+1} - a^{l+1}}{b^{2l+1} - a^{2l+1}} \frac{2l+1}{2} V \int_0^1 P_l(x) dx~,\\
+    B_l &= \frac{(-1)^l b^{-l} - a^{-l}}{b^{-(2l+1)} - a^{-(2l+1)}} \frac{2l+1}{2} V \int_0^1 P_l(x) dx~.
+\end{align}
+Now we evaluate $\int_0^1 P_l(x) dx$. For $l \neq 0$, we have
+\begin{equation}
+    \int_0^1 P_l(x)dx = \frac{1}{2l+1} (P_{l-1}(0) - P_{l+1}(0))~.
+\end{equation}
+For $l = 0$,
+\begin{equation}
+    \int_0^1 P_l(x)dx = 1~.
+\end{equation}
+Therefore, the solution is
+\begin{align}
+    \Phi(r, \theta) =&~ \frac{V}{2} + \frac{V}{2}\sum_{l = 1}^\infty (P_{l-1}(0) - P_{l+1}(0)) P_l(\cos \theta) \cr
+    &\times \left(
+        \frac{(-1)^l b^{l+1} - a^{l+1} }{b^{2l+1} - a^{2l+1} }r^l + \frac{(-1)^l b^{-l}-a^{-l} }{b^{-(2l+1)} - a^{-(2l+1)} } r^{-(l+1)}
+    \right)~.
+\end{align}
+The first five Legendre polynomials are
+\begin{align}
+    P_0(x) &= 1\\
+    P_1(x) &= x\\
+    P_2(x) &=\frac12(3x^2 - 1)\\
+    P_3(x) &=\frac12(5x^3 - 3x)\\
+    P_4(x) &=\frac{1}{8}(35 x^4 - 30x^2 +3)
+\end{align}
+Therefore,
+\begin{align}
+    \Phi(r, \theta) =&~ \frac V2 + \frac{3}{4}V \left( \frac{a^2 + b^2}{a^3 - b^3} r + \frac{a^{-1} + b^{-1}}{a^{-3} - b^{-3} r^{-2}}\right) \cos \theta\cr
+    & - \frac{7}{32} V \left( \frac{a^4 + b^4}{a^7 - b^7}r^3 + \frac{a^{-3}+b^{-3} }{a^{-7} - b^{-7}} r^{-4} \right)(5 \cos^3 \theta - 3\cos \theta) + \cdots
+\end{align}
+Now take limits $b \to \infty$ and $a \to 0$, we have
+\begin{equation}
+    \Phi(r, \theta) = \frac V2 - \frac{3}{4} V \frac{r}{b}\cos \theta + \frac{7}{32} V \frac{r^3}{b^3} (5 \cos^3 \theta - 3\cos \theta)+\cdots
+\end{equation}
+
+Now checking. In this case, we can just think the interior of a sphere of radius $b$ with different potential on upper hemisphere and lower hemisphere. From eq(2.27) in Jackson, for in the exterior of the sphere of radius $a$,
+\begin{equation}
+    \Phi(x, \theta, \phi) = \frac{3Va^2}{2x^2} \left[\cos \theta - \frac{7a^2}{12x^2}\left(\frac{5}{2} \cos^3 \theta - \frac{3}{2} \cos \theta\right) + \cdots\right]~.
+\end{equation}
+In this setting, the potential on upper hemisphere and lower hemisphere is $V$ and $-V$. To modify, the average potential for our case (potential $V$ and $0$) should be $V /2$. Their difference should be halved. For the interior, just swap $a$ and $x$ and multiply by $- a/x$. (This comes from, for the Green's function $1/|\vec x - \vec x'|$, we can just swap the length. There is also a prefactor $a(x^2 - a^2)$, so we should first divide by this factor, then swap $a$ and $x$, then times this factor back, which is equivalent to swap $a$ and $x$ first, then times $\frac{a(x^2 - a^2)}{x(a^2 - x^2)}= - a/x$.) For the radius, use $b$ instead of $a$. Use $r$ instead of $x$, we obtain,
+\begin{align}
+    \Phi(r, \theta) &= \frac V2 + \left(- \frac{b}{r}\right)\frac{3(V/2)r^2}{2 b^2}\left[\cos \theta - \frac{7r^2}{12b^2}\left(\frac{5}{2} \cos^3 \theta - \frac{3}{2} \cos \theta\right) + \cdots\right]\cr
+    &= \frac V2 - \frac{3}{4} V \frac{r}{b}\cos \theta + \frac{7}{32} V \frac{r^3}{b^3} (5 \cos^3 \theta - 3\cos \theta)+\cdots~,
+\end{align}
+which agrees with our result.
+
+\newpage
+\noindent{\bf 3.5}
+The two solutions are
+\begin{equation}
+    \Phi(\vec x) = \frac{a(a^2 - r^2)}{4\pi} \int \frac{V(\theta', \phi')}{(r^2 + a^2 - 2ar \cos\gamma)^{3/2}} d \Omega'~,
+\end{equation}
+where $\cos \gamma = \cos \theta \cos \theta' + \sin\theta \sin \theta' \cos(\phi - \phi')$~ and
+\begin{equation}
+    \Phi(\vec x) = \sum_{l=0}^\infty \sum_{m=-l}^l A_{lm} \left(\frac r a\right)^l Y_{lm}(\theta, \phi)~,
+\end{equation}
+where $A_{lm} = \int d \Omega' Y^*_{lm}(\theta', \phi') V(\theta', \phi')$.
+From Jackson section 3.3, we have
+\begin{equation}
+    \frac{1}{|\vec x - \vec x'|} = \sum_{l = 0}^\infty \frac{r^l_<}{r^{l+1}_>} P_l (\cos \gamma),
+\end{equation}
+where $r_<$ ($r_>$) is the smaller (larger) of $|\vec x|$ and $|\vec x'|$, and $\gamma$ is the angle between $\vec x$ and $\vec x'$. Now in our case $r < a$ and we have
+\begin{equation}
+    \frac{1}{\sqrt{r^2 + a^2 - 2a r \cos \gamma}} = \frac 1a\sum_{l = 0}^\infty \left(\frac{r}{a}\right)^l P_l(\cos \gamma)~.
+\end{equation}
+Now we take derivative with respect to $r$ and $a$ respectively.
+Take derivative with respect to $r$, we have
+\begin{equation}
+    \frac{-r + a\cos \gamma}{(r^2 + a^2 - 2ar \cos \gamma)^{3/2}} = \frac {1}{a^2} \sum_{l = 0}^\infty l \left(\frac{r}{a}\right)^{l-1} P_l(\cos \gamma)~.
+\end{equation}
+Take derivative with respect to $a$, we have
+\begin{equation}
+    \frac{-a + r\cos \gamma}{(r^2 + a^2 - 2 a r \cos \gamma)^{3/2}} = -\frac {1}{a^2} \sum_{l = 0}^\infty (l+1) \left(\frac{r}{a}\right)^{l} P_l(\cos \gamma)~.
+\end{equation}
+With these two equation, we can write
+\begin{equation}
+    \frac{a^2 - r^2}{ (r^2 + a^2 - 2ar \cos \gamma)^{3/2}} = \frac 1 a\sum_{l = 0}^\infty(2l + 1) \left(\frac{r}{a}\right)^l P_l(\cos \gamma)~.
+\end{equation}
+Therefore,
+\begin{align}
+    \frac{a(a^2 - r^2)}{4\pi} \int \frac{V(\theta', \phi')}{(r^2 + a^2 - 2ar \cos\gamma)^{3/2}} d \Omega' \cr
+    = \int V(\theta', \phi') \sum_{l = 0}^\infty \frac{2l+1}{4\pi} \left(\frac{r}{a}\right)^l P_l(\cos \gamma) d \Omega'~.
+\end{align}
+We also have the equation,
+\begin{equation}
+    P_l(\cos \gamma) = \frac{4\pi}{2l + 1} \sum_{m = -l}^l Y^*_{lm}(\theta', \phi') Y_{lm}(\theta, \phi)~.
+\end{equation}
+Therefore, we finally have
+\begin{align}
+    &\frac{a(a^2 - r^2)}{4\pi} \int \frac{V(\theta', \phi')}{(r^2 + a^2 - 2ar \cos\gamma)^{3/2}} d \Omega' \cr
+    &= \sum_{l = 0}^\infty \sum_{m = -l}^l \underbrace{\int V(\theta', \phi') Y^*_{lm}(\theta', \phi') d \Omega'}_{A_{lm}}  \left(\frac{r}{a}\right)^l   Y_{lm}(\theta, \phi)~.
+\end{align}
+Hence, the two solutions are equivalent to each other.
+
+
+\newpage
+\noindent{\bf 3.7 (a)} In Cartesian coordinates, we have charge $q$ located at $( 0,0,a)$ and charge $q$ at $(0,0,-a)$ and charge $-2q$ at $(0,0,0)$, for a position vector $\vec r = (x,y,z)$,
+\begin{equation}
+    \Phi(\vec x) = \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\sqrt{x^2 + y^2 + (z-a)^2} } + \frac{1}{\sqrt{x^2 + y^2 + (z+a)^2}} - \frac{2}{r}\right)~,
+\end{equation}
+where $r = |\vec r| = \sqrt{x^2 + y^2 + z^2}$. In spherical coordinates, we write
+\begin{equation}
+    x = \rho \sin \theta \cos \phi, \quad y = \rho \sin \theta \sin \phi, \quad z = \rho \cos \theta~.
+\end{equation}
+Then
+\begin{equation}\label{eqn:potential}
+    \Phi(\vec x) = \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\sqrt{\rho^2 + a^2 - 2 a \rho \cos \theta} } + \frac{1}{\sqrt{\rho^2 + a^2 + 2a \rho \cos \theta}} - \frac{2}{\rho}\right)
+\end{equation}
+As we did in the last problem, we can make expansions. Since eventually, we are going to take $a \to 0$, we just need to consider $\rho > a$,
+\begin{equation}
+    \frac{1}{\sqrt{\rho^2 + a^2 - 2a\rho \cos \theta}} = \sum_{l = 0}^\infty \frac{a^l}{\rho^{l+1}} P_l(\cos \theta)~,
+\end{equation}
+and
+\begin{equation}
+    \frac{1}{\sqrt{\rho^2 + a^2 + 2a\rho \cos \theta}} = \sum_{l = 0}^\infty (-1)^l \frac{a^l}{\rho^{l+1}} P_l(\cos \theta)~.
+\end{equation}
+Therefore,
+\begin{equation}
+    \Phi = \frac{q}{4\pi \epsilon_0} \sum_{l = 1}^\infty \frac{a^l + (-1)^l a^l}{\rho^{l+1}} P_l(\cos \theta)~.
+\end{equation}
+The summand does not vanish when $l$ is even, now take $a \to 0$ while $q a^2 = Q$ fixed, we have
+\begin{align}
+    \Phi &= \frac{Q}{4\pi \epsilon_0} \lim_{a\to 0} \left(\sum_{l = 2, ~{\rm even}}^\infty \frac{2 a^{l-2}}{\rho^{l+1}} P_l(\cos \theta)\right)\cr
+    &= \frac{Q}{4\pi \epsilon_0} \frac{2}{\rho^3} P_2(\cos \theta) = \frac{Q}{4\pi \epsilon_0} \frac{1}{\rho^3} (3 \cos^2 \theta - 1)~.
+\end{align}
+
+\newpage
+\noindent{\bf 3.7 (b)} Now with the presence of the grounded sphere, in addition to the previous potential found in (a), we need to add an extra potential contributed by the surface charges (or image charges). Now we use $r$ instead of $\rho$. Since there is an azimuthal symmetry, we can write the added potential as
+\begin{equation}
+    \Phi'(r, \theta) = \sum_{l = 0}^\infty [A_l r^l + B_l r^{-(l+1)}] P_l(\cos \theta)~.
+\end{equation}
+Now consider finiteness, since we are considering the potential inside the sphere of radius $b$. Then we have to set $B$'s to zero.
+\begin{equation}
+    \Phi'(r, \theta) = \sum_{l = 0} A_l r^l P_l(\cos \theta)~.
+\end{equation}
+We have already obtained expansion of the previous potential \eqref{eqn:potential} for $r > a$ as
+\begin{equation}
+    \Phi_0 = \frac{q}{4\pi \epsilon_0} \sum_{l = 1}^\infty \frac{a^l + (-1)^l a^l}{r^{l+1}} P_l(\cos \theta)~.
+\end{equation}
+Similarly, for $r < a$,
+\begin{equation}
+    \Phi_0 = \frac{q}{4\pi \epsilon_0} \sum_{l = 1}^\infty \frac{r^l + (-1)^{l} r^l}{a^{l+1}} P_l(\cos \theta)~.
+\end{equation}
+Then the total potential is just $\Phi = \Phi_0 + \Phi'$,
+\begin{equation}
+    \Phi(a < r < b) = \sum_{l = 0} A_l r^l P_l(\cos \theta) + \frac{q}{4\pi \epsilon_0} \sum_{l =2,~{\rm even}} \frac{2 a^l}{r^{l+1}} P_l(\cos \theta)~.
+\end{equation}
+and
+\begin{equation}
+    \Phi(r < a) = \sum_{l = 0} A_l r^l P_l(\cos \theta) + \frac{q}{4\pi \epsilon_0} \sum_{l = 2, ~{\rm even}} \frac{2r^l}{a^{l+1}} P_l(\cos\theta)~.
+\end{equation}
+The boundary condition is now $\Phi(r = b) = 0$. Therefore, we can solve for
+\begin{equation}
+    A_0 = A_{\rm odd} = 0, \quad A_l = - \frac{q}{4\pi \epsilon_0} \frac{2 a^l}{b^{2l+1}} ~{\rm for}~l~{\rm even~and}~l\ge 2~.
+\end{equation}
+Now in the limit $a \to 0$, we are only interested in the region where $r > a$,
+\begin{align}
+    \Phi(r > a) &= \frac{q}{4\pi \epsilon_0}\sum_{l = 2,~{\rm even}}  \left(\frac{2a^l}{r^{l+1}} - \frac{2a^lr^l}{b^{2l+1}}\right) P_l(\cos \theta) \cr
+    &= \frac{q a^2}{2\pi \epsilon_0}\sum_{l = 2,~{\rm even}} a^{l-2} \left (\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) P_l(\cos \theta) \cr
+    & \to \frac{Q}{2\pi \epsilon_0} \left(\frac{1}{r^3} - \frac{r^2}{b^5}\right)P_2(\cos \theta) \cr
+    &= \frac{Q}{2\pi \epsilon_0 r^3} \left(1 - \frac{r^5}{b^5}\right)P_2(\cos \theta)~.
+\end{align}
+
+\end{document}
