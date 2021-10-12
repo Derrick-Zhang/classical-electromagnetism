@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 6 \\
+3.9
+\end{center}
+{\bf 3.9}
+It's similar to what we did in class but with different boundary conditions. Use separation of variables
+\begin{equation}
+    \Phi = R(\rho) Q(\phi) Z(z)~.
+\end{equation}
+Laplacian in cylindrical coordinates is given by
+\begin{equation}
+    \nabla^2 f = \frac 1\rho\frac{\partial}{\partial \rho}\left(\rho \frac{\partial f}{\partial \rho}\right)+ \frac{1}{\rho^2} \frac{\partial^2 f}{\partial \phi^2} + \frac{\partial^2 f}{\partial z^2}~.
+\end{equation}
+So from $\nabla^2 \Phi = 0$, we can derive
+\begin{equation}
+    \frac{1}{\rho R} \frac{d}{d \rho}\left(\rho \frac{d R}{d \rho}\right)+ \frac{1}{\rho^2 Q} \frac{d^2 Q}{d\phi^2} = -\frac{1}{Z} \frac{d^2 Z}{d z^2}~.
+\end{equation}
+Since the left hand side only depends on $\rho$ and $\phi$, the right hand side depends only on $z$, then they must equal to a constant.
+\begin{equation}
+    \frac{d^2 Z}{dz^2} = -k^2 Z~,\quad \frac{\rho}{R} \frac{d}{d\rho}\left(\rho \frac{d R}{d \rho}\right) + \frac 1 Q \frac{d^2 Q}{d \phi^2} = k^2 \rho^2~.
+\end{equation}
+From the first equation, we can derive that
+\begin{equation}
+    Z(z) \propto \sin(kz), \cos(kz)~.
+\end{equation}
+From the second equation, we can derive
+\begin{equation}
+    \frac{d^2 Q}{d\phi^2} = -\nu^2  Q~, \quad \frac{d^2R}{d \rho^2} + \frac 1 \rho \frac{dR}{d\rho} -\left(k^2 + \frac{\nu^2}{\rho^2}\right)R=0~.
+\end{equation}
+The solution to the first equation is
+\begin{equation}
+    Q(\phi) \propto e^{\pm i \nu \phi}~.
+\end{equation}
+Since $\phi$ is a cyclic variable, we need $\nu$ to be an integer, and we will write $m$ instead of $\nu$. For the second derivative, we can see that $R(\rho)$ should be a linear combination of $J_m(ik\rho)$ and $N_m(ik\rho)$. For finiteness at $\rho = 0$, the coefficient of $N_m$ should be zero. We can also use the modified Bessel function $I_m$, which is related to $J_m$ as
+\begin{equation}
+    J_m(ix) = e^{\frac{m\pi i}{2}} I_m(x).
+\end{equation}
+Then
+\begin{equation}
+    R(\rho) \propto I_m(k \rho)~.
+\end{equation}
+Now consider the boundary conditions. Since the potential on the end faces is zero. We have
+\begin{equation}
+    Z(0) = Z(L) = 0~,
+\end{equation}
+from which we can derive
+\begin{equation}
+    k = \frac{n \pi}{L}, \quad n \in \mathbb Z~.
+\end{equation}
+We can write down the general solution as
+\begin{equation}
+    \Phi = \sum_{m=0}^\infty \sum_{n=1}^\infty I_m\left(\frac{n\pi \rho}{L}\right) \sin\left(\frac{n \pi z}{L}\right)\left[A_{mn} \sin(m \phi) + B_{mn} \cos(m \phi)\right]~.
+\end{equation}
+Now we require
+\begin{equation}
+    \Phi(\rho = b, \phi, z) = V(\phi, z)~.
+\end{equation}
+Now the left hand side is a Fourier series in $\phi$, also a Fourier series in $z$, we have (for $m \neq 0$)
+\begin{align}
+    A_{mn} I_m\left(\frac{n \pi b}{L}\right) &= \frac{2}{\pi L} \int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \sin(m \phi) \sin\left(\frac{n \pi z}{L}\right)~,\\
+    B_{mn} I_m\left(\frac{n \pi b}{L}\right) &= \frac{2}{\pi L} \int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \cos(m \phi) \sin\left(\frac{n \pi z}{L}\right)~.
+\end{align}
+Since for $m = 0$, $\sin(m \phi)$ vanishes, we only need to fix $B_{0n}$,
+\begin{equation}
+    B_{0n} I_0\left(\frac{n \pi b}{L}\right) = \frac{1}{\pi L}\int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \sin\left(\frac{n \pi z}{L}\right)~.
+\end{equation}
+Therefore, for $m \neq 0$,
+\begin{align}
+    A_{mn} &= \left[I_m\left(\frac{n \pi b}{L}\right)\right]^{-1}\frac{2}{\pi L} \int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \sin(m \phi) \sin\left(\frac{n \pi z}{L}\right)~,\\
+    B_{mn} &= \left[I_m\left(\frac{n \pi b}{L}\right)\right]^{-1}\frac{2}{\pi L} \int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \cos(m \phi) \sin\left(\frac{n \pi z}{L}\right)~,
+\end{align}
+and
+\begin{equation}
+    B_{0n} = \left[I_0\left(\frac{n \pi b}{L}\right)\right]^{-1}\frac{1}{\pi L}\int_0^{2\pi} d\phi \int_0^L dz \,V(\phi,z) \sin\left(\frac{n \pi z}{L}\right)~.
+\end{equation}
+
+\end{document}
