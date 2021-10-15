@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 6 \\
+3.13 3.14 3.16 b,c,d
+\end{center}
+{\bf 3.13}
+The Green function for a spherical shell bounded by $r = a$ and $r = b$ is
+\begin{equation}
+    G(\vec x, \vec x') = 4\pi \sum_{l = 0}^\infty \sum_{m = -l}^l \frac{Y^*_{lm}(\theta', \phi') Y_{lm}(\theta, \phi)}{(2l+1)\left[1- \left(\frac{a}{b}\right)^{2l+1}\right]}\left(r^l_< - \frac{a^{2l+1}}{r^{l+1}_<}\right)\left(\frac{1}{r^{l+1}_>} - \frac{r^l_>}{b^{2l+1}}\right)~.
+\end{equation}
+Since we have azimuthal symmetry, we only need to consider $m = 0$, therefore,
+\begin{equation}
+    G(\vec x, \vec x') = \sum_{l = 0}^\infty\frac{P_l(\cos \theta') P_l(\cos \theta)}{1- \left(\frac{a}{b}\right)^{2l+1}}\left(r^l_< - \frac{a^{2l+1}}{r^{l+1}_<}\right)\left(\frac{1}{r^{l+1}_>} - \frac{r^l_>}{b^{2l+1}}\right)~.
+\end{equation}
+Now the potential is
+\begin{equation}
+    \Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \int_V \rho(\vec x') G(\vec x, \vec x') d^3 x'+ \frac{1}{4\pi} \int_S\left[G(\vec x, \vec x') \frac{\partial \Phi}{\partial n'} - \Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'}\right]da'~.
+\end{equation}
+In between the two spheres, the charge density is zero, and the Green function vanishes on the boundary. We have
+\begin{equation}
+    \Phi(\vec x) = - \frac{1}{4\pi} \int_S \Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'} da'~.
+\end{equation}
+Then we have to calculate the derivative of the Green function. For the boundary at radius $a$, we have $r > r'$,
+\begin{equation}
+    G(\vec x, \vec x') = \sum_{l=0}^\infty  \frac{P_l(\cos \theta') P_l(\cos \theta)}{1 - \left(\frac{a}{b}\right)^{2l+1}} \left(r'^l - \frac{a^{2l+1}}{r'^{l+1}}\right) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right)~.
+\end{equation}
+Calculate its derivative and evaluate it at $r' = a$
+\begin{align}
+    \frac{\partial G(\vec x, \vec x')}{\partial n'}\Bigg|_{r' = a} &= - \frac{\partial G(\vec x, \vec x')}{\partial r'} \Bigg |_{r' = a} \cr
+    &= -\sum_{l=0}^\infty  \frac{P_l (\cos \theta')P_l(\cos \theta)}{1-\left(\frac{a}{b}\right)^{2l+1}}\left(l r'^{l-1} +(l+1)\frac{a^{2l+1}}{r'^{l+2}}\right) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \Bigg |_{r' = a} \cr
+    &=-\sum_{l=0}^\infty  \frac{P_l (\cos \theta')P_l(\cos \theta)}{1-\left(\frac{a}{b}\right)^{2l+1}}a^{l-1}(2l+1) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right)~.
+\end{align}
+Then
+\begin{align}
+    \int_{S_a}&\Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'}da' = \int_0^{\pi/2} a^2 \sin\theta' d\theta' \int_0^{2\pi} d\phi'\, V \frac{\partial G(\vec x, \vec x')}{\partial n'} \cr
+    &= - 2 \pi V \sum_{l=0}^\infty \frac{P_l(\cos \theta)}{1 - (a/b)^{2l+1}} a^{l+1} (2l+1) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \int_0^{\pi/2} P_l(\cos\theta') \sin\theta' d \theta'
+\end{align}
+Now evaluate for $l \neq 0$,
+\begin{equation}
+    \int_0^{\pi/2} P_l(\cos \theta') \sin \theta' d \theta' = \int_0^1 P_l(x) dx = \frac{1}{2l+1}\left[P_{l-1}(0) - P_{l+1}(0)\right]
+\end{equation}
+For $l = 0$, we simply have
+\begin{equation}
+    \int_0^{\pi/2} P_l(\cos \theta') \sin \theta' d \theta' = \int_0^1 P_l(x) dx = 1~.
+\end{equation}
+Therefore,
+\begin{align}
+    &\int_{S_a}\Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'}da' \cr
+    &= - 2 \pi V \frac{a}{1 - (a/b)} \left(\frac{1}{r} - \frac{1}{b}\right) - 2 \pi V \sum_{l=1}^\infty \frac{P_l(\cos \theta) a^{l+1}}{1 - (a/b)^{2l+1}}   \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \left[P_{l-1}(0) - P_{l+1}(0)\right]~.\nonumber
+\end{align}
+Similarly, for boundary at radius $b$, we have $r < r'$,
+\begin{equation}
+    G(\vec x, \vec x') = \sum_{l=0}^\infty  \frac{P_l(\cos \theta') P_l(\cos \theta)}{1 - \left(\frac{a}{b}\right)^{2l+1}} \left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right) \left(\frac{1}{r'^{l+1}} - \frac{r'^l}{b^{2l+1}}\right)~.
+\end{equation}
+Calculate its derivative and evaluate it at $r' = b$
+\begin{align}
+    \frac{\partial G(\vec x, \vec x')}{\partial n'}\Bigg|_{r' = b} &= \frac{\partial G(\vec x, \vec x')}{\partial r'} \Bigg |_{r' = b} \cr
+    &= \sum_{l=0}^\infty  \frac{P_l (\cos \theta')P_l(\cos \theta)}{1-\left(\frac{a}{b}\right)^{2l+1}}\left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right) \left(-(l+1)\frac{1}{r'^{l+2}} - l\frac{r'^{l-1} }{b^{2l+1}}\right) \Bigg |_{r' = b} \cr
+    &=- \sum_{l=0}^\infty  \frac{P_l (\cos \theta')P_l(\cos \theta)}{1-\left(\frac{a}{b}\right)^{2l+1}}\left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right) (2l+1) b^{-l-2}~.
+\end{align}
+Then
+\begin{align}
+    \int_{S_b}&\Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'}da' = \int_{\pi/2}^\pi b^2 \sin\theta' d\theta' \int_0^{2\pi} d\phi'\, V \frac{\partial G(\vec x, \vec x')}{\partial n'} \cr
+    &= - 2 \pi V \sum_{l=0}^\infty \frac{P_l(\cos \theta)}{1 - (a/b)^{2l+1}} b^{-l} (2l+1) \left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right) \int_{\pi/2}^\pi P_l(\cos\theta') \sin\theta' d \theta'\cr
+    &= -2\pi V \frac{1}{1-a/b}(1-a/r) - 2\pi V \sum_{l=1}^\infty (-1)^l \frac{P_l(\cos \theta) b^{-l}}{1-(a/b)^{2l+1}} \left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right)[P_{l-1}(0) - P_{l+1}(0)]\nonumber
+\end{align}
+Then the potential between the two spheres are simply given by
+\begin{align}
+    \Phi(\vec x) =&~ - \frac{1}{4\pi} \int_{S_a} \Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'} da' - \frac{1}{4\pi} \int_{S_b} \Phi(\vec x') \frac{\partial G(\vec x, \vec x')}{\partial n'}da'\cr
+    =&~ \frac{V}{2} \frac{1}{1-a/b}\left(\frac{a}{r} - \frac{a}{b}\right) + \frac{V}{2} \frac{1}{1-a/b}\left(1 - \frac{a}{r}\right) \cr
+    &+ \frac{V}{2} \sum_{l = 1}^\infty [P_{l-1}(0)-P_{l+1}(0)]P_l(\cos \theta) \cr
+    & \times \left[\frac{a^{l+1}}{1-(a/b)^{2l+1}}\left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) + (-1)^l \frac{b^{-l}}{1-(a/b)^{2l+1}} \left(r^l - \frac{a^{2l+1}}{r^{l+1}}\right)\right]\cr
+    =&~ \frac{V}{2} + \frac{V}{2}\sum_{l=1}^\infty(P_{l-1}(0) - P_{l+1}(0)) P_l(\cos\theta) \left(
+        \frac{(-1)^l b^{l+1} - a^{l+1} }{b^{2l+1} - a^{2l+1} }r^l + \frac{(-1)^l b^{-l}-a^{-l} }{b^{-(2l+1)} - a^{-(2l+1)} } r^{-(l+1)}
+    \right)~.\nonumber
+\end{align}
+This is exactly what I got in homework 5, Jackson problem 3.1.
+
+\newpage
+
+\end{document}
