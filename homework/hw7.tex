@@ -87,5 +87,104 @@ Then the potential between the two spheres are simply given by
 This is exactly what I got in homework 5, Jackson problem 3.1.
 
 \newpage
+\noindent{\bf 3.14 (a)} A line charge of length $2d$ with a total charge $Q$ has linear charge density varying as $(d^2 - z^2)$, where $z$ is the distance from the midpoint. A grounded, conducting, spherical shell of inner radius $b > d$ is centered at the midpoint of the line charge.
+
+First, we write down the charge density as a function of $z$,
+\begin{equation}
+    \rho(z) = k(d^2 - z^2),
+\end{equation}
+where the constant $k$ has to be determined. We have
+\begin{equation}
+    Q= 2\int_0^d \rho(z) dz = 2\int_0^d k(d^2 - z^2)dz = \frac{4}{3}k d^3~.
+\end{equation}
+Therefore, $k = 3 Q /(4 d^3)$ and
+\begin{equation}
+    \rho(z) = \frac{3Q}{4d^3}(d^2 - z^2)~.
+\end{equation}
+Now we write the charge density as a function of the position vector, in terms of delta functions, for $|\vec x'| \le d$,
+\begin{equation}
+    \rho(\vec x') = \frac{3Q}{4d^3}(d^2 - r'^2) \frac{1}{2\pi r'^2} [\delta(\cos \theta' - 1) + \delta(\cos \theta' + 1)]~.
+\end{equation}
+Otherwise, the charge density is zero.
+The Green function inside a sphere of radius $b$ with azimuthal symmetry is given by,
+\begin{equation}
+    G(\vec x, \vec x') = \sum_{l=0}^\infty P_l(\cos \theta') P_l(\cos \theta) r_<^l \left(\frac{1}{r_>^{l+1}} - \frac{r_>^l}{b^{2l+1}}\right)~.
+\end{equation}
+%Then its derivative evaluated at radius $b$
+%\begin{equation}
+%\frac{\partial G(\vec x, \vec x')}{\partial n'} \Bigg|_{r' = b}= \frac{\partial G(\vec x, \vec x')}{\partial r'} \Bigg|_{r' = b}= - \sum_{l = 0}^\infty P_l(\cos \theta') P_l(\cos \theta) \frac{r^l}{b^{l+2}} (2l+1)~.
+%\end{equation}
+Since on the boundary, the potential vanishes, we have
+\begin{equation}
+    \Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \int_V \rho(\vec x') G(\vec x, \vec x') d^3 x'~.
+\end{equation}
+
+For $r > d$, we have $r_< = r'$ and $r_> = r$.
+Then the potential is
+\begin{align}
+    \Phi(\vec x) =&~ \frac{1}{4\pi \epsilon_0}\frac{3 Q}{4d^3}\sum_{l =0}^\infty P_l(\cos\theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \cr
+    & \int_0^{d}dr' \int_{-1}^1 d(\cos \theta') (d^2 - r'^2)r'^l P_l(\cos \theta')
+    [\delta(\cos \theta' -1) + \delta (\cos \theta' + 1)] \cr
+    =&~ \frac{2}{4\pi \epsilon_0}\frac{3Q}{4d^3}\sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right)  \int_0^d dr'(d^2 - r'^2) r'^l \cr
+    =&~ \frac{2}{4\pi \epsilon_0}\frac{3Q}{4d^3}\sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right)  \frac{2 d^{l+3}}{(l+1)(l+3)}\cr
+    =&~ \frac{3Q}{4\pi \epsilon_0}\sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right)  \frac{d^{l}}{(l+1)(l+3)}~.
+\end{align}
+
+For $r < d$, we have two regimes, $r' < r$ and $r < r' < d$. Then in the first regime, its contribution to the potential is
+\begin{align}
+    \Phi_1(\vec x) &= \frac{2}{4\pi \epsilon_0} \frac{3Q}{4d^3} \sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \int_0^r dr' (d^2 - r'^2) r'^l\cr
+    &=\frac{2}{4\pi \epsilon_0} \frac{3Q}{4d^3} \sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \left(\frac{d^2 r^{l+1} }{l+1} - \frac{r^{l+3}}{l+3} \right)~.
+\end{align}
+In the second regime, its contribution to the potential is
+\begin{align}
+    \Phi_2(\vec x) &= \frac{2}{4\pi \epsilon_0} \frac{3Q}{4d^3} \sum_{l = 0,~{\rm even}}^\infty P_l(\cos \theta) r^l \int_r^d dr' (d^2 - r'^2) \left(\frac{1}{r'^{l+1}} - \frac{r'^l}{b^{2l+1}}\right)~.
+\end{align}
+Denote the integral by
+\begin{equation}
+    \mathcal I_l = \int_r^d dr' (d^2 - r'^2) \left(\frac{1}{r'^{l+1}} - \frac{r'^l}{b^{2l+1}}\right)~.
+\end{equation}
+When $l = 0$, it's
+\begin{equation}
+    \mathcal I_0 = d^2 \ln \frac dr - \frac{d^2}{b}(d-r) - \frac 12(d^2 - r^2) + \frac{1}{3b}(d^3 - r^3)~.
+\end{equation}
+When $l = 2$, it's
+\begin{equation}
+    \mathcal I_2 = -\ln\frac{d}{r} - \frac{d^2}{2}(d^{-2} - r^{-2}) - \frac{d^2}{3b^5}(d^3 - r^3) + \frac{1}{5 b^5}(d^5 - r^5)~.
+\end{equation}
+When $l \ge 4$, it'
+\begin{equation}
+    \mathcal I_l = -\frac{d^2}{l}(d^{-l} - r^{-l}) - \frac{d^2}{(l+1) b^{2l+1}} (d^{l+1} - r^{l+1}) + \frac{1}{l-2} (d^{2-l} - r^{2-l}) + \frac{1}{(l+3) b^{2l+1}} (d^{l+3} - r^{l+3})~.
+\end{equation}
+Therefore, for $r< d$
+\begin{equation}
+    \Phi(\vec x) = \Phi_1(\vec x) + \Phi_2(\vec x)~.
+\end{equation}
+
+\newpage
+\noindent{\bf 3.14 (b)} For potential near the boundary, we have $r> d$ and
+\begin{equation}
+    \Phi(\vec x) = \frac{3Q}{4\pi \epsilon_0} \sum_{l= 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \frac{d^l}{(l+1)(l+3)}~.
+\end{equation}
+Then, the surface charge density is given by
+\begin{align}
+    \sigma = \epsilon_0 \frac{\partial \Phi}{\partial r}\Bigg|_{r = b} = - \frac{3Q}{4\pi} \sum_{l = 0, ~{\rm even}}^\infty P_l(\cos\theta) \frac{(2l+1)}{(l+1)(l+3)} \frac{d^l}{b^{l+2}}~.
+\end{align}
+
+\newpage
+\noindent{\bf 3.14 (c)} In the limit that $d \ll b$, then also $d << r$. The potential in (a) is
+\begin{equation}
+    \Phi(\vec x) = \frac{3Q}{4\pi \epsilon_0} \sum_{l= 0,~{\rm even}}^\infty P_l(\cos \theta) \left(\frac{1}{r^{l+1}} - \frac{r^l}{b^{2l+1}}\right) \frac{d^l}{(l+1)(l+3)}~.
+\end{equation}
+Taking the limit, only the $l = 0$ term matters,
+\begin{equation}
+    \Phi(\vec x) = \frac{Q}{4\pi \epsilon_0} \left(\frac{1}{r} - \frac{1}{b} \right)~.
+\end{equation}
+It consists the point charge potential and the induced surface charge potential.
+Similarly, the surface charge density is
+\begin{equation}
+    \sigma = -\frac{Q}{4\pi b^2},
+\end{equation}
+from which we can see that the charge is uniformly distributed on the sphere with a total charge $Q$.
+
 
 \end{document}
