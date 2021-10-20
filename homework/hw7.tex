@@ -87,25 +87,24 @@ Then the potential between the two spheres are simply given by
 This is exactly what I got in homework 5, Jackson problem 3.1.
 
 \newpage
-\noindent{\bf 3.14 (a)} A line charge of length $2d$ with a total charge $Q$ has linear charge density varying as $(d^2 - z^2)$, where $z$ is the distance from the midpoint. A grounded, conducting, spherical shell of inner radius $b > d$ is centered at the midpoint of the line charge.
-
-First, we write down the charge density as a function of $z$,
-\begin{equation}
-    \rho(z) = k(d^2 - z^2),
-\end{equation}
-where the constant $k$ has to be determined. We have
-\begin{equation}
-    Q= 2\int_0^d \rho(z) dz = 2\int_0^d k(d^2 - z^2)dz = \frac{4}{3}k d^3~.
-\end{equation}
-Therefore, $k = 3 Q /(4 d^3)$ and
-\begin{equation}
-    \rho(z) = \frac{3Q}{4d^3}(d^2 - z^2)~.
-\end{equation}
+\noindent{\bf 3.14 (a)} %A line charge of length $2d$ with a total charge $Q$ has linear charge density varying as $(d^2 - z^2)$, where $z$ is the distance from the midpoint. A grounded, conducting, spherical shell of inner radius $b > d$ is centered at the midpoint of the line charge.
+%First, we write down the charge density as a function of $z$,
+%\begin{equation}
+    %\rho(z) = k(d^2 - z^2),
+%\end{equation}
+%where the constant $k$ has to be determined. We have
+%\begin{equation}
+%    Q= 2\int_0^d \rho(z) dz = 2\int_0^d k(d^2 - z^2)dz = \frac{4}{3}k d^3~.
+%\end{equation}
+%Therefore, $k = 3 Q /(4 d^3)$ and
+%\begin{equation}
+%    \rho(z) = \frac{3Q}{4d^3}(d^2 - z^2)~.
+%\end{equation}
 Now we write the charge density as a function of the position vector, in terms of delta functions, for $|\vec x'| \le d$,
 \begin{equation}
     \rho(\vec x') = \frac{3Q}{4d^3}(d^2 - r'^2) \frac{1}{2\pi r'^2} [\delta(\cos \theta' - 1) + \delta(\cos \theta' + 1)]~.
 \end{equation}
-Otherwise, the charge density is zero.
+Otherwise, for $|\vec x| > d$, the charge density is zero.
 The Green function inside a sphere of radius $b$ with azimuthal symmetry is given by,
 \begin{equation}
     G(\vec x, \vec x') = \sum_{l=0}^\infty P_l(\cos \theta') P_l(\cos \theta) r_<^l \left(\frac{1}{r_>^{l+1}} - \frac{r_>^l}{b^{2l+1}}\right)~.
@@ -186,5 +185,134 @@ Similarly, the surface charge density is
 \end{equation}
 from which we can see that the charge is uniformly distributed on the sphere with a total charge $Q$.
 
+\newpage
+\noindent{\bf 3.16 (b)} Obtain the following expansion,
+\begin{equation}
+    \frac{1}{|\vec x- \vec x'|} = \sum_{m = - \infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} J_m(k\rho) J_m(k\rho') e^{-k(z_> - z_<)}
+\end{equation}
+The Green function satisfy
+\begin{equation}\label{eqn:Green-funcion}
+    \nabla^2 G(\vec x, \vec x') = - \frac{4\pi }{\rho} \delta(\rho - \rho') \delta(\phi - \phi') \delta(z - z')~.
+\end{equation}
+Now use the result from part (a), the delta functions can be written as
+\begin{align}
+    \frac{1}{\rho} \delta(\rho - \rho') &= \int_0^\infty k J_m(k \rho) J_m(k \rho') dk\\
+    \delta(\phi-\phi') &= \frac{1}{2\pi} \sum_{m = - \infty}^\infty e^{im(\phi- \phi')}
+\end{align}
+Then we expand the Green function in a similar fashion,
+\begin{equation}
+    G(\vec x, \vec x') = \frac{1}{2\pi} \sum_{m = - \infty}^\infty \int_0^\infty dk\, e^{im(\phi - \phi')} k J_m(k \rho) J_m(k \rho') g(k, z, z')~.
+\end{equation}
+Then substitution into \eqref{eqn:Green-funcion} leads to
+\begin{align}
+    \nabla^2 G(\vec x, \vec x') =&~ \frac{1}{2\pi} \sum_{m = - \infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} k J_m(k \rho) J_m(k \rho') g(k, z, z')\left(\frac{m^2}{\rho^2} - k^2 - \frac{m^2}{\rho^2}\right)\cr
+    &+\frac{1}{2\pi} \sum_{m = - \infty}^\infty \int_0^\infty dk\, e^{im(\phi - \phi')} k J_m(k \rho) J_m(k \rho')\partial^2_z g(k, z, z')~,
+\end{align}
+which leads to
+\begin{equation} \label{eqn:differential-g}
+    \frac{d^2}{dz^2} g - k^2 g = -4\pi \delta(z-z')~.
+\end{equation}
+For $z \neq z'$, we can solve that $g$ is proportional to $e^{\pm k z}$. Considering finiteness, we assume
+\begin{equation}
+    g(k,z,z') = \begin{cases}
+        A e^{kz}~, & z < z'\\
+        B e^{-kz}~, & z > z'
+    \end{cases}~.
+\end{equation}
+Continuity at $z = z'$ implies that
+\begin{equation}\label{eqn:eqn1}
+    A e^{kz'} = B e^{-kz'}~.
+\end{equation}
+Also, integrating \eqref{eqn:differential-g} gives
+\begin{equation}
+   \lim_{\epsilon\to 0} \left(\frac{dg}{dz}\Bigg|_{z= z'+\epsilon} - \frac{dg}{dz}\Bigg|_{z= z'-\epsilon}\right) = - 4\pi~,
+\end{equation}
+which leads to
+\begin{equation}\label{eqn:eqn2}
+    -kB e^{-kz'} - kA e^{kz'} = -4\pi
+\end{equation}
+Now with \eqref{eqn:eqn1} and \eqref{eqn:eqn2}, we can solve for
+\begin{equation}
+    A = \frac{2\pi}{k} e^{-k z'}, \quad B = \frac{2\pi}{k} e^{k z'}
+\end{equation}
+Therefore,
+\begin{equation}
+    g(k,z,z')= \begin{cases}
+        \frac{2\pi}{k} e^{-k(z' -z)}~, & z<z'\\
+        \frac{2\pi}{k} e^{-k(z - z')}~, & z> z'
+    \end{cases}
+    =\frac{2\pi}{k} e^{-k(z_> - z_<)}~.
+\end{equation}
+And now
+\begin{equation}
+    \frac{1}{|\vec x - \vec x'|} = G(\vec x, \vec x') =\sum_{m = - \infty}^\infty \int_0^\infty dk\, e^{im(\phi - \phi')} J_m(k \rho) J_m(k \rho') e^{-k(z_> - z_<)}~.
+\end{equation}
+
+\newpage
+\noindent{\bf 3.16 (c)} The position vectors are given by
+\begin{equation}
+    \vec x = (\rho \cos \phi, \rho \sin \phi, z), \quad \vec x' = (\rho' \cos \phi', \rho' \sin\phi', z')
+\end{equation}
+Then,
+\begin{align}
+    |\vec x - \vec x'|^2 &= (\rho \cos\phi - \rho' \cos \phi')^2 + (\rho \sin \phi - \rho' \sin \phi')^2 + (z - z')^2 \cr
+    &= \rho^2 + \rho'^2 - 2\rho \rho' \cos (\phi - \phi')+ (z-z')^2
+\end{align}
+So we have
+\begin{equation}\nonumber
+    \frac{1}{\sqrt{\rho^2 + \rho'^2 - 2\rho \rho' \cos (\phi - \phi')+ (z-z')^2}} = \sum_{m = - \infty}^\infty \int_0^\infty dk\, e^{im(\phi - \phi')} J_m(k \rho) J_m(k \rho') e^{-k(z_> - z_<)}
+\end{equation}
+
+Taking $\rho' = 0, z' = 0$ while $\phi'$ can be arbitrary,
+LHS is $\frac{1}{\sqrt{\rho^2 + z^2}}$. In right hand side, because of azimuthal symmetry in $\phi'$, we only need to consider $m=0$. When $z > 0$, $z_> = z, z_< = 0$, when $z<0$, $z_> = 0, z_< = z$. Therefore, $z_> - z_< = |z|$. So
+\begin{equation}
+    \frac{1}{\sqrt{\rho^2 + z^2}} = \int_0^\infty e^{-k|z|} J_0(k \rho) dk~.
+\end{equation}
+Now we replace $\rho^2$ by $\rho^2 + \rho'^2 - 2\rho \rho' \cos(\phi - \phi')$, then we have
+\begin{equation}
+    \sum_{m = -\infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} J_m(k \rho) J_m(k \rho') e^{-k|z|} = \int_0^\infty e^{-k|z|} J_0(k \sqrt{\rho^2 + \rho'^2 - 2\rho \rho' \cos (\phi - \phi')})
+\end{equation}
+Therefore,
+\begin{equation}\label{eqn:identity2}
+    J_0(k \sqrt{\rho^2 + \rho'^2 - 2\rho \rho' \cos\phi}) = \sum_{m=-\infty}^\infty e^{im \phi} J_m(k \rho) J_m(k \rho')~.
+\end{equation}
+First, the asymptotic behavior of $J_\alpha(z)$ as $|z|$ goes to infinity is
+\begin{align}
+    %J_\alpha(z) &\to \frac{1}{\sqrt{2\pi z}} e^{i\left(z - \frac{\alpha\pi}{2} - \frac{\pi}{4}\right)}~, \quad -\pi <\arg z <0 ~,\cr
+    J_\alpha(z) \to \frac{1}{\sqrt{2\pi z}} e^{-i\left(z - \frac{\alpha\pi}{2} - \frac{\pi}{4}\right)}~, \quad 0 <\arg z <\pi~.
+\end{align}
+Therefore, we set $\rho' \to i \rho'$ and then let $\rho' \to \infty$, the right hand side of \eqref{eqn:identity2} now becomes
+\begin{equation}
+    {\rm RHS} \to \sum_{m = \infty}^\infty e^{im \phi} J_m(k \rho)
+    \frac{1}{\sqrt{2\pi i k \rho'}} e^{-i\left(ik\rho' - \frac{m \pi}{2} - \frac{\pi}{4}\right)}~.
+\end{equation}
+And when $\rho' \to i \rho'$ and $\rho' \to \infty$,
+\begin{equation}
+    k \sqrt{\rho^2 + \rho'^2 - 2\rho \rho' \cos \phi} \to k\rho'\left(i - \frac{\rho}{\rho'} \cos \phi\right) = i k \rho' - k \rho \cos\phi~.
+\end{equation}
+Then the left hand side becomes
+\begin{equation}
+    {\rm LHS} \to \frac{1}{\sqrt{2\pi (i k \rho' - k \rho \cos \phi)}} e^{-i\left(ik\rho' - k \rho \cos \phi - \frac{\pi}{4}\right)} \to ~ \frac{1}{\sqrt{2\pi i k \rho'}} e^{-i\left(ik\rho' - k \rho \cos \phi - \frac{\pi}{4}\right)} .
+\end{equation}
+Now equating the transformed LHS and RHS yields
+\begin{equation}
+    e^{i k \rho \cos \phi} =\sum_{m = -\infty}^\infty e^{im \phi} J_m(k \rho) e^{im\pi /2}= \sum_{m = -\infty}^\infty i^m e^{im \phi} J_m(k \rho)~.
+\end{equation}
+
+\newpage
+\noindent{\bf 3.16 (d)}
+Since now we have
+\begin{equation}
+    e^{i x \cos \phi} = \sum_{n = -\infty}^\infty  i^n e^{in \phi} J_n(x)~.
+\end{equation}
+Then
+\begin{align}
+    \frac{1}{2\pi}\int_0^{2 \pi} e^{ix\cos \phi - im\phi} d\phi &= \sum_{n = -\infty}^\infty i^n \left(\frac{1}{2\pi}\int_{0}^{2\pi} e^{i(n-m)\phi} d\phi\right) J_n(x) \cr
+    &= \sum_{n = -\infty}^\infty i^n \delta_{mn} J_n(x) = i^m J_m(x)~.
+\end{align}
+Therefore,
+\begin{equation}
+    J_m(x) = \frac{1}{2\pi i^m} \int_0^{2\pi} e^{ix \cos \phi - im \phi} d\phi~.
+\end{equation}
 
 \end{document}
