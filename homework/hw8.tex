@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\x}{{\bf x}}
+\newcommand{\lb}{\left(}
+\newcommand{\rb}{\right)}
+\newcommand{\mb}{{m \pi/\beta}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 8 \\
+3.17 3.22
+\end{center}
+{\bf 3.17} The Dirichlet Green function for the unbounded space between the planes at $z = 0$ and $z = L$ allows discussion of a point charge or a distribution of charge between parallel conducting planes held at zero potential.
+
+\noindent{\bf (a)} Using cylindrical coordinates show that one form of the Green function is
+\begin{equation}
+    G(\x, \x') = \frac{4}{L} \sum_{n = 1}^\infty \sum_{m = - \infty}^\infty e^{im(\phi - \phi')} \sin\left(\frac{n \pi z}{L}\right)\sin\left(\frac{n \pi z'}{L}\right) I_m\lb \frac{n\pi}{L} \rho_<\rb K_m \lb  \frac{n \pi}{L} \rho_>\rb~.
+\end{equation}
+
+\noindent{\bf (b)} Show that an alternative form of the Green function is
+\begin{equation}
+    G(\x, \x') = 2 \sum_{m = -\infty}^\infty \int_0 ^\infty dk e^{im(\phi -\phi')} J_m(k \rho) J_m(k \rho') \frac{\sinh(k z_<)\sinh[k(L-z_>)]}{\sinh(kL)}~.
+\end{equation}
+
+\newpage
+\noindent{\bf 3.17 (a)} Now consider the Green function
+\begin{equation}\label{eqn:green-function}
+    \nabla^2 G(\x, \x') = -4\pi \delta^3(\x - \x') = - \frac{4\pi}{\rho} \delta(\rho - \rho') \delta(\phi - \phi') \delta(z - z')~.
+\end{equation}
+The $\phi$ and $z$ delta functions can be written in terms of orthonormal functions
+\begin{equation}
+    \delta(z - z') = \frac{2}{L}\sum_{n=1}^\infty\sin\lb\frac{n \pi z}{L}\rb \sin\lb\frac{n \pi z'}{L}\rb, \quad \delta(\phi - \phi') = \frac{1}{2\pi} \sum_{m = -\infty}^\infty e^{im(\phi-\phi')}~.
+\end{equation}
+We expand the Green function in similar fashion,
+\begin{equation}
+    \boxed{
+    G(\x, \x') = \frac{1}{\pi L}\sum_{n = 1}^\infty  \sum_{m = - \infty}^\infty e^{im(\phi - \phi')} \sin\lb\frac{n \pi z}{L}\rb\sin\lb\frac{n \pi z'}{L}\rb g_{mn}(\rho, \rho')~.
+    }
+\end{equation}
+Now plug this back into \eqref{eqn:green-function}, we obtain
+\begin{equation}\label{eqn:delta-function}
+    \frac{1}{\rho} \frac{d}{d \rho} \lb \rho \frac{d g_{mn}}{d \rho}\rb - \lb \frac{m^2}{\rho^2} + \lb  \frac{n \pi}{L}\rb^2\rb g_{mn} = - \frac{4\pi}{\rho} \delta(\rho - \rho')~.
+\end{equation}
+For $\rho \neq \rho'$, this is just equation for the modified Bessel function $I_m(n \pi \rho /L)$ and $K_m(n \pi \rho /L)$. Suppose that $\psi_1(n \pi \rho/L)$ is some linear combination of $I_m$ and $K_m$ for $\rho < \rho'$ and $\psi_2(n \pi \rho/L)$ is a a linearly independent combination for $\rho > \rho'$. Then the symmetry of the Green function in $\rho$ and $\rho'$ requires that
+\begin{equation}
+    g_{mn}(\rho, \rho') = \psi_1(n\pi \rho_</L) \psi_2(n \pi \rho_>/L)~.
+\end{equation}
+The normalization of the product $\psi_1 \psi_2$ is determined by the discontinuity in slope implied by the delta function in \eqref{eqn:delta-function}:
+\begin{equation}\label{eqn:discontinuioty}
+    \frac{d g_{mn}}{d \rho}\Bigg|_+ - \frac{d g_{mn}}{d\rho}\Bigg|_- = \frac{n \pi }{L}(\psi_1 \psi_2' - \psi_2 \psi_1') = - \frac{4\pi}{\rho'}~.
+\end{equation}
+If there are no boundary surfaces, $g_{mn}$ must be finite at $\rho = 0$ and vanish at $\rho \to \infty$. Consequently $\psi_1(x) = AI_m(x)$ and $\psi_2(x) = K_m(x)$. And \eqref{eqn:discontinuioty} implies that $A = 4\pi$. Therefore,
+\begin{equation}
+    \boxed{G(\x, \x') = \frac{4}{ L}\sum_{n = 1}^\infty  \sum_{m = - \infty}^\infty e^{im(\phi - \phi')} \sin\lb\frac{n \pi z}{L}\rb\sin\lb\frac{n \pi z'}{L}\rb I_m\lb \frac{n \pi }{L} \rho_<\rb K_m\lb \frac{n \pi }{L}\rho_>\rb~.}
+\end{equation}
+
+\newpage
+\noindent{\bf 3.17 (b)} Similarly,The $\phi$ and $\rho$ delta functions can be written in terms of orthonormal functions
+\begin{equation}
+    \frac{1}{\rho}\delta(\rho - \rho') = \int_0^\infty k J_m(k\rho) J_m(k \rho') dk, \quad \delta(\phi - \phi') = \frac{1}{2\pi} \sum_{m = -\infty}^\infty e^{im(\phi-\phi')}~.
+\end{equation}
+We expand the Green function in similar fashion,
+\begin{equation}
+    \boxed{
+    G(\x, \x') = \frac{1}{2\pi}  \sum_{m = - \infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} k J_m(k \rho) J_m(k \rho') h(k,z,z')~.
+    }
+\end{equation}
+Now plug this back into \eqref{eqn:green-function}, we obtain
+\begin{equation}\label{eqn:delta-function2}
+    \frac{d^2 h}{dz^2} - k^2 h = -4\pi \delta(z-z')
+\end{equation}
+For $z \neq z'$, we can solve that
+\begin{equation}
+    h(k, z, z') \propto e^{\pm k x}~.
+\end{equation}
+Considering boundary conditions $h(k,z=0,z') = h(k, z=L, z') = 0$, we can assume $h(k,z,z')$ is of the form
+\begin{equation}
+    h(k,z,z') = \begin{cases}
+        A \sinh (kz)~, &  z < z'\\
+        B \sinh(k(L-z)), & z > z'
+    \end{cases}~.
+\end{equation}
+The continuity of $h$ at $z= z'$ gives
+\begin{equation}
+    A \sinh(kz') = B \sinh(k(L-z'))~.
+\end{equation}
+The normalization is determined by the discontinuity in slope implied by the delta function in \eqref{eqn:delta-function2}:
+\begin{equation}\label{eqn:discontinuioty2}
+    \frac{d h}{d z}\Bigg|_+ - \frac{d h}{dz}\Bigg|_- = -Bk\cosh(k(L-z')) - Ak \cosh(kz') = -4\pi~.
+\end{equation}
+We can derive that
+\begin{equation}
+    A= 4\pi\frac{\sinh(k(L-z'))}{k \sinh(kL)}~, \quad B = 4\pi\frac{\sinh(kz')}{k \sinh(kL)}~.
+\end{equation}
+Therefore,
+\begin{equation}
+\boxed{
+    h(k,z,z') = 4\pi \frac{\sinh(k z_<) \sinh[k(L-z_>)]}{k \sinh(kL)}
+}
+\end{equation}
+Therefore,
+\begin{equation}
+    \boxed{
+    G(\x, \x') = 2  \sum_{m = - \infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} J_m(k \rho) J_m(k \rho') \frac{\sinh(k z_<) \sinh[k(L-z_>)]}{ \sinh(kL)}~.
+    }
+\end{equation}
+
+
+\newpage
+\noindent{\bf 3.22} The geometry of a two-dimensional potential problem is defined in polar coordinates by the surfaces $\phi = 0, \phi = \beta$, and $\rho = a$. Using separation of variables in polar coordinates, show that the Green function can be written as
+\begin{equation}
+    G(\rho, \phi; \rho', \phi') = \sum_{m=1}^\infty \frac{4}{m} \rho_<^{m \pi / \beta} \lb \frac{1}{\rho_>^{\mb}}  - \frac{\rho_>^\mb}{a^{2\mb}} \rb \sin\lb \frac{m \pi \phi}{\beta} \rb \sin \lb \frac{m \pi \phi'}{\beta}\rb
+\end{equation}
+
+\newpage
+\noindent{\bf 3.22} The delta function of $\phi$ can be expanded as
+\begin{equation}
+    \delta(\phi - \phi') = \frac{2}{\beta} \sum_{m = 1}^\infty \sin(m \pi \phi/\beta) \sin(m \pi \phi'/\beta)~.
+\end{equation}
+Then the Green function can be expanded as
+\begin{equation}
+    \boxed{
+    G(\rho, \phi; \rho', \phi') = \frac{2}{\beta}\sum_{m =1}^\infty \sin(m \pi \phi/\beta) \sin(m \pi \phi'/\beta) g_m(\rho, \rho')~.
+    }
+\end{equation}
+Plug this into equation
+\begin{equation}
+    \nabla^2 G = - \frac{4\pi}{\rho} \delta(\rho - \rho') \delta(\phi - \phi')~,
+\end{equation}
+we obtain
+\begin{equation}
+    \frac{1}{\rho} \frac{d}{d\rho} \lb\rho \frac{d g_m}{d\rho}\rb - \frac{1}{\rho^2} \lb \frac{m \pi}{\beta}\rb^2 g_m = - \frac{4\pi}{\rho} \delta(\rho - \rho')
+\end{equation}
+When $\rho \neq \rho'$, we can obtain
+\begin{equation}
+    g_m(\rho, \rho') \propto \rho^{\pm\mb}~.
+\end{equation}
+Consider finiteness and also $g$ vanishing at $\rho = a$, we can assume $g$ is of the form
+\begin{equation}
+    g_m(\rho, \rho') = \begin{cases}
+        A \rho^{\mb}~, & \rho < \rho'\\
+        B \rho^{\mb} - B a^{2\mb}\rho^{-\mb}~, & \rho > \rho'
+    \end{cases}~.
+\end{equation}
+Then continuity at $\rho = \rho'$ implies that
+\begin{equation}
+    A\rho'^\mb = B \rho'^{\mb} - B a^{2\mb}\rho'^{-\mb}~.
+\end{equation}
+Integrating the differential equation over a small interval containing $\rho'$ gives
+\begin{equation}
+    \frac{d g_m}{d\rho} \Bigg|_{+} - \frac{d g_m}{d \rho}\Bigg|_{-} = -\frac{4\pi}{\rho'}~,
+\end{equation}
+which leads to
+\begin{equation}
+    (\mb) B \rho'^{\mb -1}+(\mb) B a^{2\mb}\rho'^{-\mb -1} - (\mb) A\rho'^{\mb -1} = -\frac{4\pi}{\rho'}~.
+\end{equation}
+We can solve for
+\begin{equation}
+    A = \frac{2\pi}{\mb} \lb \rho'^{-\mb} - a^{-2\mb} \rho'^\mb \rb~,\quad B = -\frac{2\pi}{\mb} a^{-2\mb} \rho'^{\mb}
+\end{equation}
+Therefore, we obtain
+\begin{equation}
+    \boxed{
+        g_m(\rho, \rho') = \frac{2\beta}{m} \rho_<^\mb \lb \frac{1}{\rho_>^\mb} - \frac{\rho_>^\mb}{a^{2\mb}}\rb~.
+    }
+\end{equation}
+Therefore, the Green function can be written as
+\begin{equation}
+    \boxed{
+    G(\rho, \phi; \rho', \phi') = \sum_{m =1}^\infty \frac{4}{m} \rho_<^\mb \lb \frac{1}{\rho_>^\mb} - \frac{\rho_>^\mb}{a^{2\mb}}\rb\sin(m \pi \phi/\beta) \sin(m \pi \phi'/\beta)~.
+    }
+\end{equation}
+
+\end{document}
