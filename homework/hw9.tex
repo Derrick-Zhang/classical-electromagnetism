@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\x}{{\bf x}}
+\newcommand{\p}{{\bf p}}
+\newcommand{\lb}{\left(}
+\newcommand{\rb}{\right)}
+\newcommand{\mb}{{m \pi/\beta}}
+
+\begin{document}
+
+\begin{center}
+{\bf Phys 5405}\\
+HW 9 \\
+4.2 4.7(a,b) 4.8(a)
+\end{center}
+\noindent{\bf 4.2} A point dipole with dipole moment $\bf p$ is located at the point ${\bf x}_0$. From the properties of the derivative of a Dirac delta function, show that for calculation of the potential $\Phi$ or the energy of a dipole in an external field, the dipole can be described by an effective charge density
+$$
+\rho_{\rm eff}(\x) = - \p {\bf \cdot \nabla} \delta(\x - \x_0)
+$$
+
+\newpage
+\noindent{\bf 4.2}
+The potential from the dipole is given by
+\begin{equation}
+    \Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \int d^3 x' \vec p(\vec x') \cdot \nabla'\left(\frac{1}{|\vec x - \vec x'|}\right)~.
+\end{equation}
+The distribution of the dipole is a delta function,
+\begin{equation}
+    \vec p(\vec x') = \vec p \, \delta(\vec x' - \vec x_0)~.
+\end{equation}
+Plug it into the formula of potential and integrate by parts,
+\begin{equation}
+    \Phi(\vec x) = -\frac{1}{4\pi \epsilon_0} \int d^3 x' \vec p \,\cdot \nabla' \delta(\vec x' - \vec x_0) \frac{1}{|\vec x - \vec x'|} \equiv \frac{1}{4\pi \epsilon_0} \int d^3x' \frac{\rho_{\rm eff}(\vec x')}{|\vec x - \vec x'|}~.
+\end{equation}
+Therefore, the dipole can be described by an effective charge density,
+\begin{equation}
+    \rho_{\rm eff}(\vec x) = - \vec p\, \cdot \nabla \delta(\vec x - \vec x_0)~.
+\end{equation}
+
+\newpage
+\noindent{\bf 4.7} A localized distribution of charge has a charge density
+$$
+\rho({\bf r}) = \frac{1}{64 \pi} r^2 e^{-r} \sin^2\theta~
+$$
+
+\noindent{\bf (a)} Make a multipole expansion of the potential due to this charge density and determine all the nonvanishing multipole moments. Write down the potential at large distances as a finite expansion in Legendre polynomials.
+
+\noindent{\bf (b)} Determine the potential explicitly at any point in space, and show that near the origin, correct to $r^2$ inclusive,
+$$
+\Phi({\bf r}) \simeq \frac{1}{4\pi \epsilon_0} \left[\frac{1}{4} - \frac{r^2}{120} P_2(\cos\theta)\right]
+$$
+
+\newpage
+\noindent{\bf 4.8} A very long, right circular, cylindrical shell of dielectric constant $\epsilon/\epsilon_0$ and inner and outer radii $a$ and $b$, respectively, is placed in a previously uniform electric field $E_0$ with its axis perpendicular to the field. The medium inside and outside the cylinder has a dielectric constant of unity.
+
+\noindent{\bf (a)} Determine the potential and electric field in the three regions, neglecting end effects.
+
+\end{document}
