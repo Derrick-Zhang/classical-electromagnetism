@@ -3,6 +3,7 @@
 
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\usepackage{empheq}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\x}{{\bf x}}
@@ -83,7 +84,7 @@ By the definition of Gamma functions,
     }
 \end{equation}
 For another integral, we change the variable as $x = \cos \theta$, and we also make use of the identity, $x^2 = \frac{2}{3} P_2(x) + \frac{1}{3}$, then the integral is now given by
-\begin{equation}
+\begin{equation}\label{eqn:a-integral}
     \boxed{
     \int_{-1}^1 dx\, P_l(x)(1-x^2) = \frac{2}{3}\int_{-1}^1 dx\, P_l(x) (1 - P_2(x)) = \frac{2}{3} \left(2 \delta_{l,0} - \frac{2}{5} \delta_{l,2}\right)~.
     }
@@ -102,8 +103,157 @@ Therefore, the potential is given by
 \end{equation}
 
 \newpage
+The potential is calculated as
+\begin{equation}
+    \Phi = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(\vec x')}{|\vec x - \vec x'|} d^3 x' = \frac{1}{4\pi \epsilon_0} \frac{1}{64 \pi} \int \frac{r'^2 e^{-r'}\sin^2\theta' }{|\vec x - \vec x'|} r'^2 \sin\theta' dr' d\theta' d\phi'~.
+\end{equation}
+Now we use Jackson (3.70),
+\begin{equation}
+    \frac{1}{|\vec x - \vec x'|} = 4\pi \sum_{l = 0}^\infty \sum_{m = -l}^l \frac{1}{2l+1} \frac{r^l_<}{r^{l+1}_>} Y_{lm}^*(\theta', \phi') Y_{lm}(\theta, \phi)~.
+\end{equation}
+Due to azimuthal symmetry of the charge distribution, we only need to consider $m = 0$,
+\begin{equation}
+    \boxed{
+    \frac{1}{|\vec x - \vec x'|} = \sum_{l = 0}^\infty \frac{r^l_<}{r_>^{l+1}} P_l(\cos \theta) P_l(\cos \theta')~.
+    }
+\end{equation}
+Therefore, the potential is
+\begin{align}
+    \Phi &= \sum_{l = 0}^\infty \frac{1}{4\pi \epsilon_0} \frac{1}{64\pi} \int r'^2 e^{-r'} \sin^2 \theta' \frac{r^l_<}{r_>^{l+1}} P_l(\cos \theta) P_l(\cos \theta')r'^2 \sin\theta' dr' d\theta' d\phi' \cr
+    &= \sum_{l = 0}^\infty \frac{1}{4\pi \epsilon_0} \frac{1}{32}  P_l(\cos \theta) \left(\int r'^4 e^{-r'}  \frac{r^l_<}{r_>^{l+1}}  dr'\right)  \left(\int_{-1}^1 dx\, P_l(x) (1 - x^2)\right)~.
+\end{align}
+The second integral is already calculated in \eqref{eqn:a-integral}, we copy it here for reference,
+\begin{equation}
+    \int_{-1}^1 dx\, P_l(x)(1-x^2)  = \frac{2}{3} \left(2 \delta_{l,0} - \frac{2}{5} \delta_{l,2}\right)~.
+\end{equation}
+Therefore,
+\begin{equation}
+    \boxed{
+    \Phi =  \frac{1}{4\pi \epsilon_0} \frac{1}{24} \left(\int r'^4 e^{-r'}  \frac{1}{r_>}  dr'\right) - \frac{1}{4\pi \epsilon_0} \frac{1}{120}\left(\int r'^4 e^{-r'}  \frac{r_<^2}{r_>^3} dr'\right) P_2(\cos \theta)~.
+    }
+\end{equation}
+First,
+\begin{align}
+    \int_0^\infty  dr'\, r'^4 e^{-r'}  \frac{1}{r_>} &= \int_0^r dr'\, r'^4 e^{-r'} \frac{1}{r} + \int_{r}^{\infty} dr' \, r'^4 e^{-r'} \frac{1}{r'} \cr
+    &= \boxed{\frac{1}{r} e^{-r} (-24 + 24 e^r - 18 r - 6 r^2 - r^3)}~.
+\end{align}
+Second,
+\begin{align}
+    \int_0^\infty dr'\, r'^4 e^{-r'}  \frac{r_<^2}{r_>^3} &= \int_0^r dr' \, r'^4 e^{-r'}  \frac{r'^2}{r^3} + \int_r^\infty dr' \, r'^4 e^{-r'}  \frac{r^2}{r'^3} \cr
+    &= \boxed{5 \frac{1}{r^3}e^{-r}(-144 + 144 e^r - 144 r - 72 r^2 - 24 r^3 - 6r^4 - r^5)}~.
+\end{align}
+Therefore, the exact potential is given by
+\begin{empheq}[box=\fbox]{align}
+    \Phi =&~ \frac{1}{4\pi \epsilon_0 } \frac{e^{-r}}{r}\left( e^r - 1 - \frac 34 r - \frac 14 r^3 - \frac{1}{24} r^3\right) \cr
+    &- \frac{1}{4\pi \epsilon_0}\frac{e^{-r}}{r^3}\left(6 e^r - 6 - 6r - 3r^2 - r^2 - \frac{1}{4}r^4 - \frac{1}{24} r^5\right) P_2(\cos \theta)~.
+\end{empheq}
+Near the origin, we expand,
+\begin{equation}
+    e^{-r} = 1 - r + \frac{1}{2}r^2 - \frac{1}{6}r^3 + \frac{1}{24}r^4 - \frac{1}{120}r^5 + \cdots~.
+\end{equation}
+Then, up to $r^2$ order,
+\begin{equation}
+    \Phi \approx \frac{1}{4\pi \epsilon_0} \frac{1}{4} - \frac{1}{4\pi \epsilon_0} \frac{1}{120} r^2 P_2(\cos \theta) = \boxed{\frac{1}{4\pi \epsilon_0} \left[\frac{1}{4} - \frac{r^2}{120} P_2(\cos \theta)\right]}~.
+\end{equation}
+
+
+\newpage
 \noindent{\bf 4.8} A very long, right circular, cylindrical shell of dielectric constant $\epsilon/\epsilon_0$ and inner and outer radii $a$ and $b$, respectively, is placed in a previously uniform electric field $E_0$ with its axis perpendicular to the field. The medium inside and outside the cylinder has a dielectric constant of unity.
 
 \noindent{\bf (a)} Determine the potential and electric field in the three regions, neglecting end effects.
+
+\newpage
+\noindent{\bf 4.8 (a)} Neglecting end effects, we can think that the cylinder is infinitely long. Since the system is translation invariant along $z$-axis, we can treat it as a two dimensional problem. Denote the distance from the axis by $\rho$ and the angle by $\phi$. The general solution is
+\begin{equation}
+    \Phi(\rho, \phi) = a_0 + b_0 \ln\rho + \sum_{n = 1}^\infty a_n \rho^n \sin(n \phi + \alpha_n) + \sum_{n = 1}^\infty b_n \rho^{-n} \sin(n \phi + \beta_n)~.
+\end{equation}
+Since this system satisfies $\Phi(\rho, \phi) = \Phi(\rho, -\phi)$, we can write the general solution as
+\begin{equation}
+    \Phi(\rho, \phi) = a_0 + b_0 \ln\rho + \sum_{n =1}^\infty (a_n \rho^n + b_n \rho^{-n}) \cos(n \phi) ~.
+\end{equation}
+Now consider finiteness. For $\rho < a$,
+\begin{equation}
+    \Phi_1(\rho, \phi) = a_0 + \sum_{n = 1}^\infty a_n \rho^n \cos(n \phi)~.
+\end{equation}
+For $a < \rho < b$,
+\begin{equation}
+    \Phi_2(\rho, \phi) = b_0 + c_0 \ln\rho + \sum_{n=1}^\infty (b_n \rho^n + c_n \rho^{-n}) \cos(n \phi)~.
+\end{equation}
+For $\rho > b$,
+\begin{equation}
+    \Phi_3(\rho, \phi) = d_0 + \sum_{n=1}^\infty d_n \rho^{-n} \cos(n \phi) - E_0 \rho \cos \phi~,
+\end{equation}
+where the last term is added due to the constant electric field at infinity.
+
+The boundary conditions are the tangential $E$ is continuous,
+\begin{equation}\label{eqn:tangential-E}
+    -\frac{1}{a} \frac{\partial \Phi_1}{\partial \phi} \Bigg|_{\rho = a} = - \frac{1}{a} \frac{\partial \Phi_2}{\partial \phi} \Bigg|_{\rho = a}~, \quad - \frac{1}{b}\frac{\partial \Phi_2}{\partial \phi} \Bigg|_{\rho = b} = - \frac{1}{b} \frac{\partial \Phi_3}{\partial \phi} \Bigg|_{\rho =b}~.
+\end{equation}
+Also, the normal $D$ is continuous,
+\begin{equation}\label{eqn:normal-D}
+    -\epsilon_0 \frac{\partial \Phi_1}{\partial \rho} \Bigg|_{\rho = a} = - \epsilon \frac{\partial \Phi_2}{\partial \rho} \Bigg|_{\rho = a}~, \quad - \epsilon \frac{\partial \Phi_2}{\partial \rho} \Bigg|_{\rho = b} =  - \epsilon_0 \frac{\partial \Phi_3}{\partial \rho} \Bigg|_{\rho =b}~.
+\end{equation}
+Now we calculate the derivatives of $\Phi_1$,
+\begin{equation}
+    \frac{\partial \Phi_1}{\partial \phi} = -\sum_{n = 1}^\infty n a_n \rho^n \sin(n \phi)~, \quad \frac{\partial \Phi_1}{\partial \rho} = \sum_{n=1}^\infty n a_n \rho^{n-1} \cos(n \phi)~.
+\end{equation}
+Also, the derivatives of $\Phi_2$,
+\begin{equation}
+    \frac{\partial \Phi_2}{\partial \phi} = - \sum_{n=1}^\infty n(b_n \rho^n + c_n \rho^{-n}) \sin(n \phi)~, \quad \frac{\partial \Phi_2}{\partial \rho} = \frac{c_0}{\rho} + \sum_{n=1}^\infty (n b_n \rho^{n-1} - n c_n \rho^{-n-1}) \cos(n \phi)~.
+\end{equation}
+And the derivatives of $\Phi_3$,
+\begin{equation}
+    \frac{\partial \Phi_3}{\partial \phi} = -\sum_{n = 1}^\infty n d_n \rho^{-n} \sin(n \phi) + E_0 \rho \sin\phi~, \quad \frac{\partial \Phi_3}{\partial \rho} = -\sum_{n=1}^\infty n d_n \rho^{-n-1} \cos(n \phi) - E_0 \cos \phi~.
+\end{equation}
+
+From \eqref{eqn:tangential-E}, we can derive that,
+\begin{empheq}[box=\fbox]{align}
+    c_n &= (a_n - b_n) a^{2n}~, \quad n\ge 1~.\\
+    b_n &= (d_n - c_n) b^{-2n} ~, \quad n\ge 2~.\\
+    b_1 &= (d_1 - c_1) b^{-2} - E_0~.
+\end{empheq}
+
+From \eqref{eqn:normal-D}, we can derive that,
+\begin{empheq}[box=\fbox]{align}
+    c_0 &= 0~.\\
+    a_n a^{2n} & = \frac{\epsilon}{\epsilon_0} (b_n a^{2n} - c_n)~, \quad n\ge 1~.\\
+    -\epsilon(b_n b^{n-1} - c_n b^{-n-1}) &= \epsilon_0 d_n b^{-n-1} ~, \quad n\ge 2~.\\
+    - \epsilon (b_1 - c_1 b^{-2}) &= \epsilon_0 d_1 b^{-2} + \epsilon_0 E_0~.
+\end{empheq}
+For $n \ge 2$, we can derive that
+\begin{equation}
+    \boxed{
+    a_n = b_n = c_n = d_n = 0~.
+    }
+\end{equation}
+For $n = 1$,
+We can derive that
+\begin{equation}
+    a_1 = \frac{2 \epsilon}{\epsilon + \epsilon_0} b_1~, c_1 = \frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0} a^2 b_1~, d_1 = \frac{2\epsilon}{\epsilon + \epsilon_0} \frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0} a^2 b_1 + \frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0} E_0 b^2~,
+\end{equation}
+with $b_1$ given by
+\begin{equation}
+    b_1 = \left[\left(\frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0}\right)^2 \frac{a^2}{b^2} - 1\right]^{-1} \frac{2\epsilon_0}{\epsilon + \epsilon_0} E_0~.
+\end{equation}
+Therefore, we obtain
+\begin{empheq}[box=\fbox]{align}
+    a_1 &= \frac{4 \epsilon \epsilon_0 b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2}~.\\
+    b_1 &= \frac{2\epsilon_0 (\epsilon + \epsilon_0) b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2}~.\\
+    c_1 &= \frac{2\epsilon_0(\epsilon-\epsilon_0) a^2 b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2}~.\\
+    d_1 &= \frac{(\epsilon^2 - \epsilon_0^2)(a^2 - b^2)b^2 E_0 }{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2}~.
+\end{empheq}
+Now the continuity of the potential leads
+\begin{equation}
+    a_0 = b_0 = d_0~.
+\end{equation}
+We can drop this constant in the potential. and now we have
+\begin{equation}
+    \Phi(\rho, \phi) =
+    \begin{cases}
+        \frac{4 \epsilon \epsilon_0 b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2} \rho \cos \phi~, & \rho < a\\\\
+        \frac{2\epsilon_0 (\epsilon + \epsilon_0) b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2} \rho \cos \phi + \frac{2\epsilon_0(\epsilon-\epsilon_0) a^2 b^2 E_0}{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2} \rho^{-1} \cos \phi~, & a < \rho < b\\\\
+        \frac{(\epsilon^2 - \epsilon_0^2)(a^2 - b^2)b^2 E_0 }{a^2(\epsilon- \epsilon_0)^2 - b^2(\epsilon + \epsilon_0)^2} \rho^{-1} \cos\phi -E_0 \rho \cos \phi~, & \rho >b
+    \end{cases}
+\end{equation}
 
 \end{document}
