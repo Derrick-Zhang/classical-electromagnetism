@@ -39,7 +39,9 @@ Plug it into the formula of potential and integrate by parts,
 \end{equation}
 Therefore, the dipole can be described by an effective charge density,
 \begin{equation}
+    \boxed{
     \rho_{\rm eff}(\vec x) = - \vec p\, \cdot \nabla \delta(\vec x - \vec x_0)~.
+    }
 \end{equation}
 
 \newpage
@@ -54,6 +56,50 @@ $$
 $$
 \Phi({\bf r}) \simeq \frac{1}{4\pi \epsilon_0} \left[\frac{1}{4} - \frac{r^2}{120} P_2(\cos\theta)\right]
 $$
+
+\newpage
+\noindent{\bf 4.7 (a)} The multipole expansion is
+\begin{equation}
+    \Phi(\vec x) = \frac{1}{4\pi \epsilon_0} \sum_{l = 0}^\infty \sum_{m = -l}^l \frac{4\pi}{2l+1} q_{lm} \frac{Y_{lm}(\theta, \phi)}{r^{l+1}}~,
+\end{equation}
+with multipole moments,
+\begin{align}
+    q_{lm} &= \int Y^*_{lm}(\theta, \phi) r^l \rho(\vec x) d^3 x\cr
+    &=\int Y_{lm}^*(\theta, \phi) r^l \left(\frac{1}{64\pi} r^2 e^{-r} \sin^2 \theta\right) r^2 \sin\theta dr d\theta d\phi
+\end{align}
+The spherical harmonics are related to the associated Legendre polynomials as
+\begin{equation}
+    Y_{lm}(\theta, \phi) = \sqrt{\frac{2l+1}{4\pi} \frac{(l-m)!}{(l+m)!}} P_l^m(\cos \theta) e^{im\phi}~.
+\end{equation}
+Consider the integral $\int_0^{2\pi} e^{im\phi} d\phi$, it vanishes for $m \neq 0$. Therefore,
+\begin{align}
+    q_{lm} &= \delta_{m,0} \int \sqrt{\frac{2l+1}{4\pi}} P_l(\cos\theta)r^l \left(\frac{1}{64\pi} r^2 e^{-r} \sin^2 \theta\right) r^2 \sin\theta dr d\theta d\phi \cr
+    &= \frac{2\pi}{64\pi}\sqrt{\frac{2l+1}{4\pi}} \delta_{m,0} \left(\int dr\, r^{l+4} e^{-r} \right) \left(\int d\theta\, P_l(\cos \theta) \sin^3\theta\right)
+\end{align}
+By the definition of Gamma functions,
+\begin{equation}
+    \boxed{
+    \int_0^\infty dr\, r^{l+4} e^{-r} = \Gamma(l+5) = (l+4)!
+    }
+\end{equation}
+For another integral, we change the variable as $x = \cos \theta$, and we also make use of the identity, $x^2 = \frac{2}{3} P_2(x) + \frac{1}{3}$, then the integral is now given by
+\begin{equation}
+    \boxed{
+    \int_{-1}^1 dx\, P_l(x)(1-x^2) = \frac{2}{3}\int_{-1}^1 dx\, P_l(x) (1 - P_2(x)) = \frac{2}{3} \left(2 \delta_{l,0} - \frac{2}{5} \delta_{l,2}\right)~.
+    }
+\end{equation}
+Therefore, the only non-zero multipole moments are
+\begin{equation}
+    \boxed{
+    q_{00} = \frac{1}{2} \frac{1}{\sqrt{\pi}}~, \quad  q_{20} = -3\sqrt{\frac{5}{\pi}}~.
+    }
+\end{equation}
+Therefore, the potential is given by
+\begin{equation}
+    \boxed{
+    \Phi = \frac{1}{4\pi \epsilon_0} \left[\frac{1}{r} - \frac{6 P_2(\cos \theta)}{r^3}\right] = \frac{1}{4\pi \epsilon_0} \left[\frac{P_0(\cos\theta)}{r} - \frac{6 P_2(\cos \theta)}{r^3}\right]~.
+    }
+\end{equation}
 
 \newpage
 \noindent{\bf 4.8} A very long, right circular, cylindrical shell of dielectric constant $\epsilon/\epsilon_0$ and inner and outer radii $a$ and $b$, respectively, is placed in a previously uniform electric field $E_0$ with its axis perpendicular to the field. The medium inside and outside the cylinder has a dielectric constant of unity.
