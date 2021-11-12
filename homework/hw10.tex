@@ -81,6 +81,29 @@ which implies that
 \end{equation}
 
 
+\newpage
+\noindent{\bf 5.3} In Jackson section 5.5, it already gives the magnetic induction for a circular current loop,
+For the position located on the symmetric axis of the loop, the magnetic induction is given by
+\begin{equation}
+    B_z = \frac{\mu_0 I}{2} \frac{a^2}{(a^2 + z^2)^{3/2}}~,
+\end{equation}
+where $a$ is the radius of the loop and $z$ is the distance between the center of the loop and the position where we measure the magnetic induction.
+
+In this case, we have
+\begin{equation}
+    B_z  = \frac{\mu_0 N I}{2} a^2 \int dz  \frac{1}{(a^2 + z^2)^{3/2}}~.
+\end{equation}
+
+Instead of using variable $z$, we use the variable $\theta$ such that
+\begin{equation}
+    \tan \theta = a/z~.
+\end{equation}
+Then
+\begin{equation}
+    \boxed{
+    B_z = \frac{\mu_0 N I}{2} \int_{\pi - \theta_1}^{\theta_2} d(\cos \theta) = \frac{\mu_0 N I}{2} (\cos \theta_2 + \cos \theta_1)~.
+    }
+\end{equation}
 
 
 
