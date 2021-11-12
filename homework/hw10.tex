@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{empheq}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\x}{{\bf x}}
+\newcommand{\p}{{\bf p}}
+\newcommand{\lb}{\left(}
+\newcommand{\rb}{\right)}
+\newcommand{\mb}{{m \pi/\beta}}
+\newcommand{\B}{{\bf B}}
+\newcommand{\bl}{{\bf l}}
+
+\begin{document}
+\begin{center}
+{\bf Phys 5405}\\
+HW 10 \\
+5.1, 5.3, 5.4(a), 5.7(a,b,c,d), 5.8, 5.10(a,b)
+
+\end{center}
+\noindent{\bf 5.1}
+We have the differential expression
+\begin{equation}
+    d {\bf B} = \frac{\mu_0 I}{4\pi}\, d\bl' \times \frac{\x - \x'}{|\x - \x'|^3}~.
+\end{equation}
+Then
+\begin{equation}
+    \B = \int d \B = \frac{\mu_0 I}{4\pi} \oint d \bl' \times \frac{\x - \x'}{|\x - \x'|^3}~.
+\end{equation}
+It suffices to show that
+\begin{equation}
+    \oint d\bl' \times \frac{\x - \x'}{|\x - \x'|^3} = \nabla \Omega~.
+\end{equation}
+
+First, we can make use of the identity,
+\begin{equation}
+    \boxed{
+    \frac{\x - \x'}{|\x - \x'|^3} = \nabla' \left(\frac{1}{|\x - \x'|}\right) \equiv {\bf V}~.
+    }
+\end{equation}
+Then, consider each components
+\begin{align}
+    \boxed{
+    \hat{\x}_i \cdot \oint d\bl' \times {\bf V} = \oint d\bl' \cdot ({\bf V} \times \hat{\x}_i) = \int_S d{\bf a}' \cdot (\nabla' \times({\bf V} \times \hat{\x}_i))~.
+    }
+\end{align}
+Now we evaluate $\nabla' \times({\bf V} \times \hat{\x}_i)$, using the identity
+\begin{equation}
+    \nabla \times ({\bf A} \times {\bf B}) = {\bf A}(\nabla \cdot {\bf B}) - {\bf B}(\nabla \cdot {\bf A}) + ({\bf B} \cdot \nabla) {\bf A} - ({\bf A} \cdot \nabla) {\bf B}~,
+\end{equation}
+so we have
+\begin{equation}
+    \boxed{
+    \nabla' \times({\bf V} \times \hat{\x}_i) = - \hat{\x}_i(\nabla' \cdot {\bf V}) + (\hat{\x}_i \cdot \nabla') {\bf V} = (\hat{\x}_i \cdot \nabla') {\bf V} = \frac{\partial}{\partial x'_i} {\bf V}~,
+    }
+\end{equation}
+where we have used the fact that for $\x \neq \x'$,
+\begin{equation}
+    \nabla' \cdot {\bf V} = \nabla'^2 \left(\frac{1}{|\x - \x'|} \right) = 0~.
+\end{equation}
+Finally, we have achieved that
+\begin{equation}
+    \hat{\x}_i \cdot \oint d\bl' \times \frac{\x - \x'}{|\x - \x'|^3} = \int_S d{\bf a}' \cdot \frac{\partial}{\partial x_i'} \left(\nabla' \left(\frac{1}{|\x - \x'|}\right)\right) = -\frac{\partial}{\partial x_i}\int_S d{\bf a}' \cdot \nabla' \left(\frac{1}{|\x - \x'|}\right)
+\end{equation}
+From Jackson, the equation below (1.25), we have
+\begin{equation}
+    d{\bf a}' \cdot \nabla' \left(\frac{1}{|\x - \x'|}\right) = - d\Omega~.
+\end{equation}
+Therefore,
+\begin{equation}
+    \boxed{
+    \hat{\x}_i \cdot \oint d\bl' \times \frac{\x - \x'}{|\x - \x'|^3}  = \frac{\partial}{\partial x_i}\int_S d\Omega~,
+    }
+\end{equation}
+which implies that
+\begin{equation}
+    \oint d\bl' \times \frac{\x - \x'}{|\x - \x'|^3} = \nabla \Omega~.
+\end{equation}
+
+
+
+
+
+\end{document}
