@@ -105,6 +105,57 @@ Then
     }
 \end{equation}
 
+\newpage
+\noindent{\bf 5.4 (a)} In a current-free region, the magnetic induction satisfies
+\begin{equation}
+    \nabla \cdot \B = 0~, \quad \nabla \times \B = 0~.
+\end{equation}
+Written in components, we have
+\begin{equation}\label{eqn:constraints}
+    \frac{1}{\rho} \frac{\partial (\rho B_\rho)}{\partial \rho} + \frac{\partial B_z}{\partial z} = 0~, \quad \frac{\partial B_\rho}{\partial z} - \frac{\partial B_z}{\partial \rho} = 0~.
+\end{equation}
 
+Near the axis, the axial component of the magnetic induction can be expanded as
+\begin{align}
+    B_z(\rho, z) \approx B_z(0,z) + \frac{\partial B_z(0, z)}{\partial \rho} \rho + \frac{1}{2} \frac{\partial^2 B_z(0,z)}{\partial \rho^2} \rho^2 + \frac{1}{6} \frac{\partial^3 B_z(0,z)}{\partial \rho^3} \rho^3+  \cdots
+\end{align}
+The radial component of the magnetic induction can also be expanded as
+\begin{equation}
+    B_\rho(\rho, z) \approx B_\rho(0,z) +  \frac{\partial B_\rho(0,z)}{\partial \rho}  \rho + \frac{1}{2} \frac{\partial^2 B_\rho(0,z)}{\partial \rho^2}  \rho^2 + \frac{1}{6} \frac{\partial^3 B_\rho(0,z)}{\partial \rho^3}  \rho^3  + \cdots
+\end{equation}
+Next we just plug these two expansions into \eqref{eqn:constraints} and equating the coefficients.
+\begin{align}
+    \frac{\partial B_\rho}{\partial z} &= \frac{\partial B_\rho(0,z)}{\partial z} + \frac{\partial^2 B_\rho(0,z)}{\partial z \partial \rho} \rho + \frac{1}{2} \frac{\partial^3 B_\rho(0,z)}{\partial z \partial \rho^2} \rho^2 + \frac{1}{6} \frac{\partial^4 B_\rho(0,z)}{\partial z \partial \rho^3} \rho^3 + \cdots\\
+    \frac{\partial B_z}{\partial \rho} &= \frac{\partial B_z(0,z)}{\partial \rho} + \frac{\partial^2 B_z(0,z)}{\partial \rho^2} \rho + \frac{1}{2} \frac{\partial^3 B_z(0,z)}{\partial \rho^3} \rho^2 + \cdots
+\end{align}
+and
+\begin{align}
+    -\frac{\partial B_z}{\partial z} &= - \frac{\partial B_z(0,z)}{\partial z} - \frac{\partial^2 B_z(0,z)}{\partial z \partial \rho} \rho - \frac{1}{2} \frac{\partial^3 B_z(0,z)}{\partial z \partial \rho^2} \rho^2 - \frac{1}{6} \frac{\partial^4 B_z(0,z)}{\partial z \partial \rho^3} \rho^3 + \cdots\\
+    \frac{1}{\rho}\frac{\partial (\rho B_\rho)}{\partial \rho} &= \frac{B_\rho(0,z)}{\rho} + 2 \frac{\partial B_\rho(0,z)}{\partial \rho} + \frac{3}{2} \frac{\partial^2 B_\rho(0,z)}{\partial \rho^2} \rho + \frac{2}{3} \frac{\partial^3 B_\rho(0,z)}{\partial \rho^3} \rho^2 + \cdots
+\end{align}
+We have
+\begin{align}
+    B_\rho(0,z) & = 0~,\\
+    \frac{\partial B_\rho(0,z)}{\partial \rho} &= - \frac{1}{2}\frac{\partial B_z(0,z)}{\partial z}~, \\
+    \frac{\partial^2 B_\rho(0,z)}{\partial \rho^2} &= - \frac{2}{3} \frac{\partial^2 B_z(0,z)}{\partial z \partial \rho} = - \frac{2}{3} \frac{\partial^2 B_\rho(0,z)}{\partial z^2} = 0~,\\
+    \frac{\partial ^3 B_\rho(0,z)}{\partial \rho^3} &= -\frac{3}{4} \frac{\partial^3 B_z(0,z)}{\partial z \partial \rho^2} = -\frac{3}{4} \frac{\partial^3 B_\rho(0,z)}{\partial z^2 \partial \rho} = \frac{3}{8} \frac{\partial^3 B_z(0,z)}{\partial z^3}~.
+\end{align}
+We also have
+\begin{align}
+    \frac{\partial B_z(0,z)}{\partial \rho} &= \frac{\partial B_\rho(0,z)}{\partial z} = 0~,\\
+    \frac{\partial^2 B_z(0,z)}{\partial \rho^2} &= \frac{\partial^2 B_\rho(0,z)}{\partial z \partial \rho} = - \frac{1}{2} \frac{\partial^2 B_z(0,z)}{\partial z^2}~,\\
+    \frac{\partial^3 B_z(0,z)}{\partial \rho^3} &= \frac{\partial^3 B_\rho(0,z)}{\partial z \partial \rho^2} = -\frac{2}{3}\frac{\partial^3 B_\rho(0,z)}{\partial z^3} = 0~.
+\end{align}
+Since $B_\rho(0,z) = 0$, all its derivatives with respect to $z$ gives zero.
+Therefore,
+\begin{empheq}[box=\fbox]{align}
+    B_z(\rho, z) &\approx  B_z(0,z) -\frac{1}{4} \frac{\partial^2 B_z(0,z)}{\partial z^2} \rho^2 + \cdots \\
+    B_\rho(\rho, z) &\approx -\frac{1}{2} \frac{\partial B_z(0,z)}{\partial z} \rho - \frac{1}{16} \frac{\partial^3 B_z(0,z)}{\partial z^3} \rho^3 + \cdots
+\end{empheq}
+
+
+\newpage
+\noindent
+{\bf 5.7 (a)} We have
 
 \end{document}
