@@ -13,6 +13,7 @@
 \newcommand{\mb}{{m \pi/\beta}}
 \newcommand{\B}{{\bf B}}
 \newcommand{\bl}{{\bf l}}
+\newcommand{\A}{{\bf A}}
 
 \begin{document}
 \begin{center}
@@ -157,5 +158,184 @@ Therefore,
 \newpage
 \noindent
 {\bf 5.7 (a)} We have
+\begin{equation}
+    \B = \frac{\mu_0 I}{4\pi} \oint \frac{d\bl' \times (\x - \x')}{|\x - \x'|^3}
+\end{equation}
+For $\x$ on the z axis, the only non-vanishing component is the $z$ component
+\begin{equation}
+    B_z(z)= \frac{\mu_0 I}{4\pi} \int_0^{2\pi} d\theta \frac{a^2}{(a^2 + z^2)^{3/2}} = \boxed{\frac{\mu_0 I}{2} \frac{a^2}{(a^2 + z^2)^{3/2}}}~.
+\end{equation}
+
+\newpage
+\noindent{\bf 5.7 (b)} From (a), we can write down the magnetic induction at the axis as
+\begin{equation}
+    B_z (z) = \frac{\mu_0 I}{2} \left(\frac{a^2}{(a^2 + (z+ b/2)^2)^{3/2}} + \frac{a^2}{(a^2 + (z- b/2)^2)^{3/2}}\right)~.
+\end{equation}
+When we look near the origin where $z$ is very small,
+\begin{align}\label{eqn:taylor-expansion}
+    B_z(z) &= \frac{\mu_0 I a^2}{2} \left(\frac{1}{(a^2+ b^2/4 + z^2 + bz)^{3/2}} + \frac{1}{(a^2 + b^2/4 + z^2 - bz)^{3/2}}\right)\cr
+    &= \frac{\mu_0 I a^2}{2 d^3} \left[\left(1 + \frac{z^2 + bz}{d^2}\right)^{-3/2} + \left(1 + \frac{z^2 - bz}{d^2}\right)^{-3/2}\right]
+\end{align}
+Define
+\begin{equation}
+    f(z) = \frac{1}{2}\left(1 + \frac{z^2 + bz}{d^2}\right)^{-3/2} + \frac{1}{2}\left(1 + \frac{z^2 - bz}{d^2}\right)^{-3/2}~.
+\end{equation}
+Now we calculate its Taylor expansion around $z = 0$,
+\begin{align}
+    f(0) &= 1 \\
+    f'(0) &= 0 \\
+    f''(0) &= \frac{3(5 b^2 - 4d^2)}{4 d^4} = \frac{3(b^2 - a^2)}{d^4}\\
+    f^{(3)} &= 0 \\
+    f^{(4)} &= \frac{45(21 b^4 - 56 b^2 d^2 + 16 d^4)}{16 d^8} = \frac{45(b^4 - 6 b^2 a^2+ 2a^4)}{2d^8}
+\end{align}
+Therefore,
+\begin{equation}
+    B_z(z) = \left(\frac{\mu_0 I a^2}{d^3}\right) \left[1 + \frac{3(b^2 - a^2) z^2}{2d^4} + \frac{15(b^4 - 6b^2 a^2 + 2a^4)z^4}{16 d^8} + \cdots\right]
+\end{equation}
+
+\newpage
+\noindent{\bf 5.7(c)} Using results from 5.4 (a), copied here for convenience, for position slightly off the axis, we have
+\begin{align}
+    B_z(\rho, z) &\approx B_z(0,z) - \left(\frac{\rho^2}{4}\right) \left[\frac{\partial^2 B_z(0,z)}{\partial z^2}\right]+ \cdots\\
+    B_\rho(\rho, z) &\approx -\left(\frac{\rho}{2}\right) \left[\frac{\partial B_z(0,z)}{\partial z}\right]
+\end{align}
+Define
+\begin{equation}
+    \sigma_0 \equiv \frac{\mu_0 I a^2}{d^3}~, \quad \sigma_2 \equiv \frac{3(b^2-a^2)}{2d^4} \sigma_0
+\end{equation}
+we have
+\begin{equation}
+    \frac{\partial B_z(0,z)}{\partial z} = 2\sigma_2 z + \cdots~,\quad
+    \frac{\partial^2 B_z(0,z)}{\partial z^2} = 2\sigma_2 + \cdots
+\end{equation}
+So correct to second order in coordinates
+\begin{equation}
+    B_z(\rho,z) = \sigma_0 + \sigma_2 \left(z^2 - \frac{\rho^2}{2}\right)~, \quad B_\rho = - \sigma_2 z \rho~.
+\end{equation}
+
+\newpage
+\noindent{\bf 5.7 (d)} We start from
+\begin{align}
+    B_z (z) &= \frac{\mu_0 I a^2}{2} \left(\frac{1}{(a^2 + (z+ b/2)^2)^{3/2}} + \frac{1}{(a^2 + (z- b/2)^2)^{3/2}}\right) \cr
+    &= \frac{\mu_0 I a^2}{2 |z|^3} \left[\left(1+ bz^{-1} + d^2 z^{-2}\right)^{3/2} + \left(1- bz^{-1} + d^2 z^{-2}\right)^{3/2}\right]
+\end{align}
+This is the same form as \eqref{eqn:taylor-expansion}, and following the same procedure, we can expand it around large $z$ as
+\begin{equation}
+    B_z(z)= \frac{\mu_0 I a^2}{|z|^3}\left[1 + \frac{3}{2}\frac{(b^2- a^2)}{z^2} + \frac{15}{16}\frac{(b^4 - 6b^2 a^2 + 2 a^4)}{z^4} + \cdots\right]~.
+\end{equation}
+It is just obtained from the small $z$ expansion by the formal substitution $d \to |z|$.
+
+\newpage
+\noindent{\bf 5.8 (a)} The vector potential is given by
+\begin{equation}
+    \A(\x) = \frac{\mu_0}{4\pi}\int d^3 x' \frac{{\bf J}(\x')}{|\x - \x'|} = \frac{\mu_0}{4\pi} \int d^3 x' \frac{J(r, \theta) \hat{\phi}'}{|\x - \x'|}~.
+\end{equation}
+Decompose the spherical coordinates basis in Cartesian coordinates,
+\begin{align}
+    \hat{r} &= \frac{\partial}{\partial r} = \frac{\partial x}{\partial r} \frac{\partial }{\partial x} + \frac{\partial y}{\partial r} \frac{\partial }{\partial y}+ \frac{\partial z}{\partial r} \frac{\partial }{\partial z} = (\sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta)\\
+    \hat{\bf \theta} &= \frac{1}{r}\frac{\partial}{\partial \theta} = \frac{1}{r}\left(\frac{\partial x}{\partial \theta} \frac{\partial }{\partial x} + \frac{\partial y}{\partial \theta} \frac{\partial }{\partial y}+ \frac{\partial z}{\partial \theta} \frac{\partial }{\partial z}\right) = (\cos \theta \cos \phi, \cos \theta \sin \phi, -\sin \theta)\\
+    \hat{\phi} &= \frac{1}{r\sin\theta} \frac{\partial}{\partial \phi} =\frac{1}{r \sin \theta}\left(\frac{\partial x}{\partial \phi} \frac{\partial }{\partial x} + \frac{\partial y}{\partial \phi} \frac{\partial }{\partial y}+ \frac{\partial z}{\partial \phi} \frac{\partial }{\partial z}\right) = (-\sin \phi, \cos \phi, 0)
+\end{align}
+Therefore,
+\begin{equation}
+    \hat{\phi}' = (\hat{\phi}' \cdot \hat{r} )\hat{r} + (\hat{\phi}' \cdot \hat{\theta})\hat{\theta} + (\hat{\phi}' \cdot \hat{\phi}) \hat{\phi} = \sin \theta \sin(\phi - \phi') \hat{r} + \cos\theta \sin(\phi - \phi')\hat{\theta} + \cos(\phi - \phi') \hat{\phi}~.
+\end{equation}
+Moreover, we can expand the Green's function in terms of spherical harmonics,
+\begin{equation}
+    \A = \frac{\mu_0}{4\pi} \int r'^2 dr' d\Omega' \hat{\phi}'J(r', \theta') \sum_{L}\sum_{m} \frac{4\pi}{2L+1}\left(\frac{r_<^L}{r_>^{L+1}}\right) Y_{Lm}^*(\theta', \phi') Y_{L,m}(\theta, \phi)
+\end{equation}
+For $m = 0$, the integral over $\phi'$ vanishes. For $m \neq 0$,
+since
+\begin{align}
+    Y_{Lm}^*(\theta', \phi')Y_{Lm}(\theta, \phi) &= Y_{Lm}(\theta',0)Y_{Lm}(\theta,0)e^{im(\phi - \phi')}\\
+    Y_{L,-m}^*(\theta', \phi')Y_{L,-m}(\theta, \phi) &= Y_{Lm}(\theta',0)Y_{Lm}(\theta,0)e^{-im(\phi - \phi')}~,
+\end{align}
+so
+\begin{equation}
+    \A = \frac{\mu_0}{2\pi} \int r'^2 dr' d\Omega' \hat{\phi}'J(r', \theta') \sum_{L}\sum_{m=1}^\infty \frac{4\pi}{2L+1}\left(\frac{r_<^L}{r_>^{L+1}}\right) Y_{Lm}^*(\theta', 0) Y_{L,m}(\theta, 0)\cos(m(\phi - \phi'))
+\end{equation}
+Performing the $\phi'$ integral, the only non-vanishing contribution is the $\hat{\phi}$ component with $m = 1$, therefore,
+\begin{equation}
+    \A = \hat{\phi} A_\phi = \hat{\phi} \frac{\mu_0}{2} \int r'^2 dr' \sin\theta' d\theta' J(r', \theta') \sum_{L} \frac{1}{L(L+1)} \left(\frac{r_<^L}{r_>^{L+1}}\right) P_L^1(\cos \theta) P_L^1(\cos \theta')~.
+\end{equation}
+In the interior, $r_< = r$ and $r_> = r'$, so we have
+\begin{equation}
+    A_\phi = -\frac{\mu_0}{4\pi} \sum_L m_L r^L P_L^1(\cos \theta)~,
+\end{equation}
+where
+\begin{align}
+    m_L &= -2\pi \frac{1}{L(L+1)}\int r'^2 dr' \sin \theta' d \theta' J(r', \theta') r'^{-L-1} P_L^1(\cos \theta') \cr
+    &= -\frac{1}{L(L+1)} \int d^3 x r^{-L-1} P_L^1(\cos \theta) J(r, \theta)~.
+\end{align}
+
+Similarly, outside the current distribution, $r_< = r'$, $r_> = r$, so we have
+\begin{equation}
+    A_\phi (r, \theta) = -\frac{\mu_0}{4\pi} \sum_{L} \mu_L r^{-L-1} P_L^1(\cos \theta)~,
+\end{equation}
+where
+\begin{align}
+    \mu_L &= -2\pi \frac{1}{L(L+1)} \int r'^2 dr' \sin \theta' d\theta' J(r', \theta') r'^L P_L^1(\cos\theta')\cr
+    &= - \frac{1}{L(L+1)} \int d^3 x r^L P_L^1(\cos \theta) J(r, \theta)~.
+\end{align}
+
+\newpage
+\noindent{\bf 5.10 (a)}
+We have to show that
+\begin{equation}
+    A_\phi (\rho, z ) = \frac{\mu_0 I a}{\pi} \int_0^\infty dk \cos kz  I_1(k \rho_<) K_1(k \rho_>)~.
+\end{equation}
+The current density is given by
+\begin{equation}
+    {\bf J}(\x') = \hat{\phi}' I \delta(\rho'-a) \delta(z')~.
+\end{equation}
+As we have derived in the last problem,
+\begin{equation}
+    \hat{\phi}' = \sin \theta \sin(\phi - \phi') \hat{r} + \cos\theta \sin(\phi - \phi')\hat{\theta} + \cos(\phi - \phi') \hat{\phi}~.
+\end{equation}
+Using Jackson (3.149),
+\begin{equation}\nonumber
+    \frac{1}{|\x - \x'|} = \frac{4}{\pi} \int_0^\infty dk \cos[k(z-z')]
+    \left(
+        \frac{1}{2} I_0(k \rho_<) K_0(k \rho_>) + \sum_{m=1}^\infty  \cos[m(\phi - \phi')] I_m (k \rho_<) K_m(k \rho_>)~,
+    \right)
+\end{equation}
+where $\rho_< = \min(\rho, \rho')$ and $\rho_> = \max(\rho, \rho')$.
+Therefore, from
+\begin{align}
+    \A(\x)&= \frac{\mu_0}{4\pi} \int d^3 x' \frac{{\bf J}(\x')}{|\x - \x'|}~,
+\end{align}
+we can see that for $\hat{r}$ and $\hat{\theta}$ component, the $\theta$ integral vanishes and the only non-vanishing component is
+\begin{align}
+    A_\phi(\rho,z) =&~ \frac{\mu_0 I }{\pi^2} \int d^3 x' \int dk \cos(\phi - \phi') \delta(\rho' - a) \delta(z') \cos[k(z-z')]\cr
+    &\times\left(
+        \frac{1}{2} I_0(k \rho_<) K_0(k \rho_>) + \sum_{m=1}^\infty  \cos[m(\phi - \phi')] I_m (k \rho_<) K_m(k \rho_>)
+    \right)\cr
+    =&~ \frac{\mu_0 I a}{\pi} \int_0^\infty dk \cos(kz) I_1(k \rho_<) K_1(k \rho_>)~,
+\end{align}
+where in the last step, only $m=1$ term survives and $\rho_<  = \min(a, \rho)$ and $\rho_> = \max(a, \rho)$.
+
+\newpage
+\noindent{\bf 5.10 (b)} We want to show that an alternative expression for $A_\phi$ is
+\begin{equation}
+    A_\phi(\rho, z) = \frac{\mu_0 I a}{2} \int_0^\infty dk e^{-k|z|} J_1(ka) J_1(k \rho)~.
+\end{equation}
+From Jackson problem 3.16 (b), we have
+\begin{equation}
+    \frac{1}{|\x - \x'|} = \sum_{m = - \infty}^\infty \int_0^\infty dk e^{im(\phi - \phi')} J_m(k \rho) J_m(k \rho') e^{-k(z_> - z_<)}~.
+\end{equation}
+Therefore,
+\begin{align}
+    A_\phi(\rho,z) &= \frac{\mu_0 I}{4\pi} \int d^3 x'\int dk  \delta(\rho' - a) \delta(z') \cos(\phi - \phi') \sum_{m = -\infty}^\infty e^{im(\phi - \phi')} J_m(k\rho) J_m(k \rho') e^{-k(z_> - z_<)}\cr
+    &= \frac{\mu_0 I a}{4\pi} \int_0^{2\pi} d\phi' \int_0^\infty dk \cos(\phi - \phi') \sum_{m = -\infty}^\infty e^{im(\phi - \phi')} J_m(k \rho) J_m(k a) e^{-k|z|}
+\end{align}
+Since $J_{-m}(x) = (-1)^m J_m(x)$
+\begin{equation}
+    \sum_{m = -\infty}^\infty e^{im(\phi - \phi')} J_m(k \rho) J_m(k a) = J_0(k \rho) J_0 (ka) + 2 \sum_{m = 1}^\infty J_m(k \rho) J_m(ka) \cos(\phi - \phi')~.
+\end{equation}
+Only the $m = 1$ term contributes to the integral, so
+\begin{equation}
+    A_\phi(\rho,z) = \frac{\mu_0 I a}{2} \int_0^\infty e^{-k|z|} J_1(k \rho) J_1(k a)~.
+\end{equation}
+
 
 \end{document}
