@@ -164,12 +164,65 @@ Since the magnetization points along the $z$-direction, we only need to consider
 Therefore,
 \begin{equation}
     \Phi_M(z) = \begin{cases}
-        \frac{M_0}{2}\left(\sqrt{}\right)
+        \frac{M_0}{2}\left(\sqrt{a^2 + (z-L)^2} - \sqrt{a^2 + z^2} - L\right) & z < 0\\
+        \frac{M_0}{2}\left(\sqrt{a^2 + (z-L)^2} - \sqrt{a^2 + z^2} + 2z- L\right) & 0 < z < L\\
+        \frac{M_0}{2}\left(\sqrt{a^2 + (z-L)^2} - \sqrt{a^2 + z^2} + L\right) & z > L
     \end{cases}
 \end{equation}
+The magnetic field ${\bf H}$ is given by ${\bf H} = - \nabla \Phi_M = - \hat{z}\,\partial \Phi_M/ \partial z$. Then
+\begin{align}
+    {\bf H}_{\rm in} &= -\frac{M_0}{2} \left(\frac{z-L}{\sqrt{a^2 + (z-L)^2} } - \frac{z}{\sqrt{a^2 + z^2}} + 2\right)\hat{z}\\
+    {\bf H}_{\rm out} &= -\frac{M_0}{2} \left(\frac{z-L}{\sqrt{a^2 + (z-L)^2} } - \frac{z}{\sqrt{a^2 + z^2} }\right) \hat{z}
+\end{align}
+The magnetic induction is given by $\B = \mu_0 ({\bf H} + {\bf M})$. So we have,
+\begin{align}
+    \B_{\rm in} = -\frac{\mu_0 M_0}{2} \left(\frac{z-L}{\sqrt{a^2 + (z-L)^2} } - \frac{z}{\sqrt{a^2 + z^2}} \right) \hat{z} \\
+    \B_{\rm out} = -\frac{\mu_0 M_0}{2} \left(\frac{z-L}{\sqrt{a^2 + (z-L)^2} } - \frac{z}{\sqrt{a^2 + z^2}} \right) \hat{z}
+\end{align}
 
 \newpage
-\noindent{\bf 5.20}
+\noindent{\bf 5.20} We start from the force equation
+\begin{equation}
+    {\bf F} = \int \bJ(\x) \times \B(\x)\, d^3x~.
+\end{equation}
+Using the fact that a magnetization $\bf M$ inside a volume $V$ bounded by a surface $S$ is equivalent to a volume current density $\bJ_M = \nabla \times {\bf M}$ and a surface current density ${\bf M} \times {\bf n}$, we can write
+\begin{align}
+    {\bf F} = \int_V (\nabla \times {\bf M})\times \B_e \,d^3 x + \int_S ({\bf M} \times {\bf n}) \times \B_e \,d a
+\end{align}
+Since
+\begin{equation}
+    \nabla(\A \cdot \B) = (\A \cdot \nabla) \B + (\B \cdot \nabla) \A + \A \times (\nabla \times \B) + \B \times (\nabla \times \A)~.
+\end{equation}
+In our case, we have
+\begin{equation}
+    (\nabla \times {\bf M}) \times \B_e = - \nabla({\bf M} \cdot \B) + ({\bf M} \cdot \nabla) \B_e + (\B_e \cdot \nabla) {\bf M} + {\bf M} \times (\nabla \times \B_e)~.
+\end{equation}
+Since there's no external current, $\nabla \times \B_e = 0$, we have
+\begin{equation}\label{eqn:using-Stokes}
+    \boxed{(\nabla \times {\bf M}) \times \B_e = - \nabla({\bf M} \cdot \B_e) + ({\bf M} \cdot \nabla) \B_e + (\B_e \cdot \nabla) {\bf M}}
+\end{equation}
+Also, we have
+\begin{equation}\label{eqn:using-Stokes2}
+    \boxed{
+    ({\bf M} \times {\bf n}) \times \B_e = (\B_e \cdot {\bf M}) {\bf n} - (\B_e \cdot {\bf n}) {\bf M}}
+\end{equation}
+For volume integration of the first term in the right hand side of \eqref{eqn:using-Stokes}, we can use Stokes theorem, which will cancel the surface integral of the first term in the right hand side of \eqref{eqn:using-Stokes2}. So we are left with
+\begin{equation}
+    {\bf F} = \int_V ({\bf M} \cdot \nabla) \B_e\, d^3 x+ \int_V (\B_e \cdot \nabla){\bf M} \, d^3 x - \int_S (\B_e \cdot {\bf n}) {\bf M} \, da~.
+\end{equation}
+Now we want to do integration by parts, we have
+\begin{equation}
+    \int_V(\A \cdot \nabla) \B\, d^3x = - \int_V(\nabla \cdot \A) \B\, d^3x + \int_S ( \A\cdot{\bf n} )\B \, da~.
+\end{equation}
+Then we have
+\begin{equation}
+    \boxed{
+    {\bf F} = - \int_V (\nabla \cdot {\bf M}) \B_e \,d^3x + \int_S({\bf M} \cdot{\bf n} ) \B_e \, da
+    }~,
+\end{equation}
+where we have used the fact that $\nabla \cdot \B_e = 0$.
+
+The force is then
 
 \newpage
 \noindent{\bf 5.21}
