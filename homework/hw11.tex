@@ -222,16 +222,158 @@ Then we have
 \end{equation}
 where we have used the fact that $\nabla \cdot \B_e = 0$.
 
-The force is then
+Now we have the external magnetic field, given in components,
+\begin{equation}
+    B_x = B_0(1 + \beta y)~, \quad B_y = B_0(1 + \beta x)~,
+\end{equation}
+and the magnetization points to $\theta_0$, $\phi_0$. And since it's uniform, $\nabla \cdot {\bf M} = 0$, the volume integral vanishes. For the surface integral, we can first evaluate,
+\begin{equation}
+    {\bf M} \cdot {\bf n} = M_0 (\cos\theta \cos \theta_0 + \sin\theta \sin \theta_0 \cos(\phi - \phi_0))~.
+\end{equation}
+Then the $x$-component of the force is
+\begin{align}
+    F_x &= M_0 B_0 \int R^2 \sin \theta d \theta d\phi (\cos\theta \cos \theta_0 + \sin\theta \sin \theta_0 \cos(\phi - \phi_0))(1 + \beta R \sin \theta \sin\phi)\cr
+    &= M_0 B_0 \beta R^3 \sin \theta_0 \int d(\cos \theta) d\phi (1 - \cos^2\theta) \sin \phi \cos(\phi - \phi_0) \cr
+    &= \frac{4}{3}\pi R^3 \beta M_0 B_0 \sin\theta_0 \sin \phi_0~.
+\end{align}
+Similarly, the $y$-component of the force is
+\begin{align}
+    F_y &= M_0 B_0 \int R^2 \sin \theta d \theta d\phi (\cos\theta \cos \theta_0 + \sin\theta \sin \theta_0 \cos(\phi - \phi_0))(1 + \beta R \sin \theta \cos\phi)\cr
+    &= M_0 B_0 \beta R^3 \sin \theta_0 \int d(\cos \theta) d\phi (1 - \cos^2\theta) \cos \phi \cos(\phi - \phi_0) \cr
+    &= \frac{4}{3}\pi R^3 \beta M_0 B_0 \sin\theta_0 \cos \phi_0~.
+\end{align}
+Therefore, the force is given by
+\begin{equation}
+    \boxed{
+    {\bf F} = \frac{4}{3}\pi R^3 \beta M_0 B_0 \sin \theta_0(\sin \phi_0 \hat{x} + \cos \phi_0 \hat{y})
+    }
+\end{equation}
 
 \newpage
-\noindent{\bf 5.21}
+\noindent{\bf 5.21} Since there is no free current, we have
+\begin{equation}
+    \nabla \times {\bf H} = 0
+\end{equation}
+Now we evaluate
+\begin{align}
+    \int \B \cdot {\bf H}\, d^3x = \int (\nabla \times \A) \cdot {\bf H} \, d^3x
+\end{align}
+Since
+\begin{equation}
+    \nabla \cdot (\A \times \B) = (\nabla \times \A) \cdot \B - (\nabla \times \B) \cdot \A~,
+\end{equation}
+so we have
+\begin{align}
+    \int \B \cdot {\bf H} \, d^3 x &= \int \nabla \cdot (\A \times {\bf H})\, d^3x + \int (\nabla \times {\bf H}) \cdot \A\, d^3 x \cr
+    &= \int \nabla \cdot(\A \times {\bf H}) \, d^3x = 0~.
+\end{align}
+In the last step, we can use the Stokes theorem. Since the magnetostatic field is due to a localized distribution of permanent magnetization, the fields vanish at infinity.
+
+The potential energy of a dipole in an external field is given by
+\begin{equation}
+    U = - {\bf m} \cdot \B~.
+\end{equation}
+For a continuous distribution of permanent magnetization, the magnetostatic energy can be written as
+\begin{align}
+    W &= - \frac{1}{2} \int {\bf M} \cdot \B\, d^3 x \cr
+      &= -\frac{\mu_0}{2} \int {\bf M} \cdot ({\bf M} + {\bf H})\, d^3 x\cr
+      &= -\frac{\mu_0}{2} \int {\bf M} \cdot {\bf M} \, d^3x - \frac{\mu_0}{2} \int {\bf M} \cdot {\bf H}\, d^3 x~.
+\end{align}
+We can drop the first term, which is a constant independent of the orientation or position of the various constituent magnetized bodies. So
+\begin{align}
+    W &= \boxed{- \frac{\mu_0}{2} \int {\bf M} \cdot {\bf H} \, d^3x}\cr
+      &= - \frac{\mu_0}{2} \int \left(\frac{\B}{\mu_0} - {\bf H}\right) \cdot {\bf H}\, d^3 x\cr
+      &=-\frac{1}{2} \int {\B} \cdot {\bf H} \, d^3x + \frac{\mu_0}{2} \int {\bf H} \cdot {\bf H}\, d^3 x\cr
+      &=\boxed{\frac{\mu_0}{2} \int {\bf H} \cdot {\bf H}\, d^3x }~,
+\end{align}
+where in the last step we used result from part a.
 
 \newpage
-\noindent{\bf 5.26}
+\noindent{\bf 5.26} The magnetic energy per unit length is given by
+\begin{equation}
+    W = \frac{1}{2}L I^2~.
+\end{equation}
+We can also calculate the magnetic energy, using
+\begin{equation}
+    W = \frac{1}{2} \int \bJ\cdot \A \, d^3x~.
+\end{equation}
+Therefore, the self-inductance per unit length is
+\begin{equation}
+    L = \frac{1}{I^2} \int \bJ \cdot \A \,d^3 x = \frac{1}{I^2} \int \bJ_a \cdot  \A_a \, d^3 x + \frac{1}{I^2} \int \bJ_b \cdot \A_b\, d^3 x~.
+\end{equation}
+
+For a single wire of radius $a$, it is easy to evaluate the magnetic field. Define $\rho$ as the distance from the symmetry axis of the wire, then
+\begin{equation}
+    \B = \begin{cases}
+        \frac{\mu_0 I \rho}{2 \pi a^2}\hat{\phi} & \rho < a \\
+        \frac{\mu_0 I}{2\pi \rho} \hat{\phi}& \rho > a
+    \end{cases}~.
+\end{equation}
+Since $\B = \nabla \times \A$, we can find one configuration of vector potential such that it is continuous at the boundary of the wire,
+\begin{equation}
+    \A = \begin{cases}
+        -\frac{\mu_0 I \rho^2}{4\pi a^2} \hat{z} & \rho < a\\
+        - \frac{\mu_0 I }{4\pi} (1 + 2\ln\rho- 2\ln a) \hat{z}& \rho > a
+    \end{cases}~.
+\end{equation}
+
+Now in our case, define $\rho$ the distance to wire $a$ and $\rho'$ the distance to wire $b$. Suppose the current in $a$ is along $\hat{z}$ direction and the current in $b$ is along the $-\hat{z}$ direction, then we have
+\begin{align}
+    \A_a &= -\frac{\mu_0 I \rho^2}{4\pi a^2} \hat{z} +\frac{\mu_0 I}{4\pi} (1 + 2\ln(\rho'/b))\hat{z}\\
+    \A_b &= \frac{\mu_0 I \rho'^2}{4\pi b^2} \hat{z} - \frac{\mu_0 I}{4\pi} (1 + 2\ln(\rho/a))\hat{z}
+\end{align}
+Therefore,
+\begin{align}
+    \int \bJ_a \cdot \A_a \, d^3 x = - \frac{\mu_0 I^2}{4\pi^2 a^2}\int \left(-1 + \frac{\rho^2}{a^2} - \ln\left(\frac{\rho'^2}{b^2}\right) \right) \rho d\rho d\phi~,
+\end{align}
+where $\rho'^2$ is given by
+\begin{equation}
+    \rho'^2 = d^2 + \rho^2 - 2 d\rho \cos \phi~.
+\end{equation}
+Then we have
+\begin{equation}
+    \int \bJ_a \cdot \A_a \, d^3 x = - \frac{\mu_0 I^2}{4 \pi^2 a^2} \left(-\frac{1}{2} \pi a^2 + 2\pi a \ln b^2 - \int_0^a d\rho \int_0^{2\pi} d\phi \rho \ln(d^2 + \rho^2 - 2d \rho \cos \phi)\right)
+\end{equation}
+Since $d \ll \rho$, we have
+\begin{equation}
+    \ln (d^2 + \rho^2 - 2d \rho \cos \phi) = \ln d^2 + \left(-2 \frac{\rho}{d}\cos \phi + (1-2\cos^2 \phi) \frac{\rho^2}{d^2}\right)~.
+\end{equation}
+The integral of $\cos \phi$ and $1 - 2\cos^2 \phi$ over $\phi$ vanish. Therefore, we have
+\begin{align}
+    \int \bJ_a \cdot \A_a \, d^3 x = \frac{\mu_0 I^2}{8\pi} + \frac{\mu_0 I^2}{4 \pi} \ln\left(\frac{d^2}{b^2}\right)~.
+\end{align}
+Similarly, we can get
+\begin{align}
+    \int \bJ_b \cdot \A_b \, d^3 x = \frac{\mu_0 I^2}{8\pi} + \frac{\mu_0 I^2}{4 \pi } \ln\left(\frac{d^2}{a^2}\right)~.
+\end{align}
+Adding them up and dividing by $I^2$, we obtain
+\begin{equation}
+    \boxed{L = \frac{\mu_0}{4\pi}\left[1 + 2\ln\left(\frac{d^2}{ab}\right)\right]  }
+\end{equation}
+
 
 \newpage
-\noindent{\bf 5.27}
+\noindent{\bf 5.27} Suppose the current in the inner wire is pointing along the $\hat{z}$ direction. Using Ampere's law, it is easy to write down the magnetic field,
+\begin{equation}
+    \B = \begin{cases}
+        \frac{\mu_0 I \rho}{2\pi b^2} \hat{\phi} & \rho < b\\
+        \frac{\mu_0 I}{2\pi \rho} \hat{\phi}& b < \rho < a\\
+        0 & \rho > a
+    \end{cases}
+\end{equation}
+Now we use the following equation to calculate the 
+Similar to the last problem, we can write the vector potential as
+\begin{equation}
+    \A = \begin{cases}
+        - \frac{\mu_0 I \rho^2}{4\pi b^2} \hat{z} & \rho < b\\
+        -\frac{\mu_0 I}{4\pi} (1 + 2 \ln \rho - 2\ln b)\hat{z} & b < \rho < a\\
+        -\frac{\mu_0 I}{4\pi} (1 + 2 \ln a - 2 \ln b) \hat{z}& \rho >a
+    \end{cases}
+\end{equation}
+Therefore, the magnetic energy per unit length is given by
+\begin{equation}
+    W = \int \bJ \cdot \A \,d^3 x = 
+\end{equation}
 
 
 
